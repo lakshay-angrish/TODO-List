@@ -1,22 +1,22 @@
 <div class="container">
     <form action="" novalidate>
-        <mat-form-field matTooltip="Please type" hideRequiredMarker formnovalidate name="search" tooltip="ds"
+        <mat-form-field matTooltip="Please type" formnovalidate name="search" tooltip="ds"
             appearance="standard" color="primary" [style.width.ex]=30>
             <mat-label>
-                Type a task...
+                type a task...
             </mat-label>
-            <input alt="add" matInput type="text" required />
+            <input alt="add" matInput type="text" name="task_name" required [(ngModel)]="taskName" />
         </mat-form-field>
         <div>
             <mat-form-field matTooltip="choose a date">
-                <mat-label>Add Due Date</mat-label>
-                <input matInput [matDatepicker]="myDatePicker" type="date">
+                <mat-label>add a due date</mat-label>
+                <input matInput placeholder="mm/dd/yyyy" [matDatepicker]="myDatePicker" name="date" type="text" [(ngModel)]="dateSelector">
                 <mat-datepicker-toggle matSuffix [for]="myDatePicker"></mat-datepicker-toggle>
                 <mat-datepicker #myDatePicker></mat-datepicker>
             </mat-form-field>
         </div>
         <div id="cen">
-            <button id="subButton" mat-button>Submit</button>
+            <button id="subButton" mat-button (click)="addTaskToDb()">Submit</button>
         </div>
     </form>
 </div>
