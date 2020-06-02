@@ -5,18 +5,18 @@
             <mat-label>
                 Type a task...
             </mat-label>
-            <input alt="add" matInput type="text" required />
+            <input name = "title" alt="add" matInput type="text" [(ngModel)]="title" required/>
         </mat-form-field>
         <div>
             <mat-form-field matTooltip="choose a date">
                 <mat-label>Add Due Date</mat-label>
-                <input matInput [matDatepicker]="myDatePicker" type="date">
+                <input name = "due" matInput [matDatepicker]="myDatePicker" [(ngModel)]="due">
                 <mat-datepicker-toggle matSuffix [for]="myDatePicker"></mat-datepicker-toggle>
                 <mat-datepicker #myDatePicker></mat-datepicker>
             </mat-form-field>
         </div>
         <div id="cen">
-            <button id="subButton" mat-button>Submit</button>
+            <button id="subButton" mat-button mat-dialog-close (click)="addTask()">Submit</button>
         </div>
     </form>
 </div>
