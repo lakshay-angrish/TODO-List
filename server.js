@@ -44,8 +44,8 @@ var taskSchema = new mongoose.Schema({
     type: String,
     enum: ['low', 'medium', 'high']
   },
-  priority: {
-    type: String,
+  labels: {
+    type: [String],
     lowercase: true
   }
 });
