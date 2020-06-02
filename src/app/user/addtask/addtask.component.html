@@ -1,0 +1,22 @@
+<div class="container">
+    <form action="" novalidate>
+        <mat-form-field matTooltip="Please type" hideRequiredMarker formnovalidate name="search" tooltip="ds"
+            appearance="standard" color="primary" [style.width.ex]=30>
+            <mat-label>
+                Type a task...
+            </mat-label>
+            <input alt="add" matInput type="text" required />
+        </mat-form-field>
+        <div>
+            <mat-form-field matTooltip="choose a date">
+                <mat-label>Add Due Date</mat-label>
+                <input matInput [matDatepicker]="myDatePicker" type="date">
+                <mat-datepicker-toggle matSuffix [for]="myDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #myDatePicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div id="cen">
+            <button id="button" mat-button>Submit</button>
+        </div>
+    </form>
+</div>

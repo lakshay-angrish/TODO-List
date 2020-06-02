@@ -1,0 +1,12 @@
+.contanier {
+    width: 50%;
+}
+#cen {
+    text-align: center;
+}
+#button {
+    &:hover {
+        background-color: rgb(49, 47, 47);
+        color: white;
+    }
+} 
