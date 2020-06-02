@@ -1,0 +1,18 @@
+<span id="username"><span>Hi, </span> Username</span>
+<header>
+    <form action="" novalidate>
+        <mat-form-field matTooltip="enter a task" hideRequiredMarker formnovalidate name="search" tooltip="ds"
+            appearance="standard" color="primary" [style.width.ex]=30>
+            <mat-label>
+                Search the task..
+            </mat-label>
+            <input alt="add" matInput type="text" required />
+        </mat-form-field>
+    </form>
+    <span>
+        <button mat-button matTooltip="click to search">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button mat-button (click)="openAddNewTaskDialog()"><mat-icon>add</mat-icon></button>
+    </span>
+</header>

@@ -1,0 +1,16 @@
+#sixedBox {
+    height: 1.5em;
+}
+.container {
+    display: grid;
+    height: 100vh;
+    justify-content: space-evenly;
+    grid-template-columns: 20% 50% 20%;
+    grid-column-gap: 10px;
+    padding: 10px;
+}
+.leftbar {
+    background-color: rgb(116, 155, 187);
+    color: white;
+    font-weight: bold;
+}

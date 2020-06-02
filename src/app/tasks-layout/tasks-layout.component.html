@@ -1,0 +1,9 @@
+<div *ngIf="heading" id='heading'>
+    <h2>{{heading}}</h2>
+</div>
+<div id="content">
+    <div id="task">
+        <app-task-card [mycolor] = color1></app-task-card>
+        <app-task-card [mycolor] = color2></app-task-card>
+    </div>
+</div>
