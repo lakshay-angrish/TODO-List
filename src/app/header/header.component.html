@@ -10,15 +10,11 @@
         </mat-form-field>
     </form>
     <span>
-        <button mat-button color="primary" matTooltip="please add new task">
+        <button mat-button matTooltip="click to search">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button mat-button matTooltip="please add new task">
             <mat-icon>add</mat-icon>
         </button>
-        <button mat-button [matMenuTriggerFor]="menu" color="primary" matTooltip="filter the Tasks">
-            <mat-icon>filter_list</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item>by date</button>
-            <button mat-menu-item>by tag</button>
-        </mat-menu>
     </span>
 </header>
