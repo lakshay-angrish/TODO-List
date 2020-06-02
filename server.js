@@ -28,8 +28,26 @@ process.on('SIGINT', function(){
 
 
 var taskSchema = new mongoose.Schema({
-  task: String,
-  due: Date
+  title: {
+    type: String,
+    minlength: 1
+  },
+  due: {
+    type: Date,
+    min: Date.now()
+  },
+  status: {
+    type: String,
+    enum: ['new', 'running', 'finished']
+  },
+  priority: {
+    type: String,
+    enum: ['low', 'medium', 'high']
+  },
+  priority: {
+    type: String,
+    lowercase: true
+  }
 });
 
 var Task = new mongoose.model('Task', taskSchema);
