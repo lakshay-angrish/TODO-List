@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { STATUS_CODES } from 'http';
 
 @Component({
   selector: 'app-addtask',
@@ -21,7 +22,7 @@ export class AddtaskComponent implements OnInit {
     }
       this.http.post('http://localhost:3000/newTask', task, {responseType: 'text'}).subscribe( 
         data => {
-          console.log(data);
+          console.log(data);  
       },
       err => {
         console.log(err);
