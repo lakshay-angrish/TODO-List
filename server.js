@@ -1,7 +1,13 @@
 var mongoose = require('mongoose');
 const express = require('express');
 const app = express();
+const cors = require('cors');
+var bodyparser = require("body-parser");
 var http = require('http').createServer(app);
+
+app.use(bodyparser.urlencoded( { extended: true } ));
+app.use(bodyparser.json());
+app.use(cors());
 
 const dbURL = 'mongodb://localhost/todo';
 
@@ -44,8 +50,8 @@ var taskSchema = new mongoose.Schema({
     type: String,
     enum: ['low', 'medium', 'high']
   },
-  priority: {
-    type: String,
+  labels: {
+    type: [String],
     lowercase: true
   }
 });
@@ -66,8 +72,11 @@ app.get('/tasks', (req, res) => {
 
 app.post('/newTask', (req, res) => {
   var newTask = new Task({
-    task: req.body.task,
-    due: req.body.due
+    title: req.body.title,
+    due: req.body.due,
+    status: req.body.status,
+    priority: req.body.priority,
+    labels: req.body.labels
   });
 
   newTask.save((error) => {
@@ -75,6 +84,7 @@ app.post('/newTask', (req, res) => {
       console.log(error);
       res.send('Error while adding task. Try again.');
     } else {
+      console.log('Task Added!');
       res.send('Task Added!');
     }
   });
