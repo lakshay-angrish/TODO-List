@@ -51,6 +51,8 @@ var taskSchema = new mongoose.Schema({
     type: [String],
     lowercase: true
   }
+}, {
+  versionKey: false
 });
 
 var Task = new mongoose.model('Task', taskSchema);

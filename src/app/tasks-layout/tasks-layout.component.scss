@@ -2,7 +2,8 @@
     margin-top: 15px;
 }
 *{
-    font-family: 'Roboto', sans-serif;
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
 }
 .card{
     height : 80px;
@@ -18,8 +19,13 @@
 #title{
     display: inline-block;
     color: white  ;
+<<<<<<< HEAD
     font-size: 16px;
     font-weight: bold;
+=======
+    font-size: 14px;
+    font-style: bold;
+>>>>>>> added new fields in add task
 }
 #disc{
     display: inline-block;
