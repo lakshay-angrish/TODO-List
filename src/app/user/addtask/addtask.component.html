@@ -1,18 +1,32 @@
 <div class="container">
     <form action="" novalidate>
-        <mat-form-field formnovalidate name="search" tooltip="ds"
-            appearance="standard" color="primary" [style.width.ex]=30>
+        <mat-form-field hideRequiredMarker formnovalidate name="newTask" appearance="standard" color="primary"
+            [style.width.ex]="30">
             <mat-label>
                 type a task...
             </mat-label>
-            <input alt="add" matInput type="text" name="task_name" required [(ngModel)]="taskName" />
+            <input name="title" alt="add" matInput type="text" [(ngModel)]="title" required />
+        </mat-form-field>
+        <mat-form-field matTooltip="choose a date">
+            <mat-label>add a due date</mat-label>
+            <input name="due" placeholder="mm/dd/yyyy" [min]="minDate" matInput [matDatepicker]="myDatePicker" [(ngModel)]="due" />
+            <mat-datepicker-toggle matSuffix [for]="myDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #myDatePicker></mat-datepicker>
         </mat-form-field>
         <div>
-            <mat-form-field matTooltip="choose a date">
-                <mat-label>add a due date</mat-label>
-                <input matInput placeholder="mm/dd/yyyy" [matDatepicker]="myDatePicker" name="date" type="text" [(ngModel)]="dateSelector">
-                <mat-datepicker-toggle matSuffix [for]="myDatePicker"></mat-datepicker-toggle>
-                <mat-datepicker #myDatePicker></mat-datepicker>
+            <!-- <mat-form-field matTooltip="choose a tag">
+                <mat-label>choose an existing tag</mat-label>
+                <mat-select name="tags" [(ngModel)]="selectedTag">
+                    <mat-option value="study">
+                        study
+                    </mat-option>
+                    <mat-option>
+                        study
+                    </mat-option>
+                    <mat-option>
+                        study
+                    </mat-option>
+                </mat-select>
             </mat-form-field>
             <button mat-button matTooltip="add a new tag" >
                 <mat-icon style="color: grey;">add</mat-icon>
@@ -23,7 +37,9 @@
             </span>
         </div>
         <div id="cen">
-            <button id="subButton" mat-button (click)="addTaskToDb()">Submit</button>
+            <button id="subButton" mat-button mat-dialog-close (click)="addTask()">
+                Submit
+            </button>
         </div>
     </form>
 </div>

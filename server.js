@@ -47,10 +47,6 @@ process.on('SIGINT', function(){
 
 
 var taskSchema = new mongoose.Schema({
-<<<<<<< HEAD
-  task: String,
-  due: Date
-=======
   title: {
     type: String,
     minlength: 1
@@ -68,7 +64,6 @@ var taskSchema = new mongoose.Schema({
     type: [String],
     lowercase: true
   }
->>>>>>> upstream/master
 }, {
   versionKey: false
 });
@@ -89,16 +84,11 @@ app.get('/allTasks', (req, res) => {
 
 app.post('/newTask', (req, res) => {
   var newTask = new Task({
-<<<<<<< HEAD
-    task: req.body.taskName,
-    due: req.body.date
-=======
     title: req.body.title,
     due: req.body.due,
     status: req.body.status,
     priority: req.body.priority,
     labels: req.body.labels
->>>>>>> upstream/master
   });
 
 
