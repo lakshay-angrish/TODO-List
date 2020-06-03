@@ -24,8 +24,8 @@ import { TasksLayoutComponent } from './tasks-layout/tasks-layout.component';
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     MaterialModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule
   ],

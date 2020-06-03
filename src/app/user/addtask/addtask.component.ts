@@ -31,7 +31,7 @@ export class AddtaskComponent implements OnInit {
     } else if (value["value"] == 2) {
       this.pri = "medium";
     } else {
-      this.pri = "hight"
+      this.pri = "high";
     }
   }
   addTask() {
@@ -44,7 +44,8 @@ export class AddtaskComponent implements OnInit {
     };
 
     this.http.post('http://localhost:3000/newTask', args, { responseType: 'text'}).subscribe((response) => {
-      alert(this.selectedTag);
+      alert(response);
+      window.location.reload();
     },
     (error) => {
       alert('Server Error!');
