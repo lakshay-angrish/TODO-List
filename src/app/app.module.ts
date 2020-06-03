@@ -10,13 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { HeaderComponent } from './header/header.component';
 import { AddtaskComponent } from './user/addtask/addtask.component';
+import { TasksLayoutComponent } from './tasks-layout/tasks-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     HeaderComponent,
-    AddtaskComponent
+    AddtaskComponent,
+    TasksLayoutComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,35 @@
+#heading{
+    margin-top: 15px;
+}
+*{
+    font-family: 'Roboto', sans-serif;
+}
+.card{
+    height : 80px;
+    width: 110px;
+    border-radius: 5px;
+    background-color: blueviolet;
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 15px;
+}
+#name{
+    display: inline-block;
+    color: white  ;
+    font-size: 16px;
+    font-style: bold;
+}
+#disc{
+    display: inline-block;
+    color: white  ;
+    font-size: 10px;
+}
+#dura{
+    display: inline-block;
+    color: white  ;
+    font-size: 12px;
+}
+#container{
+    margin-bottom: 10px;
+}

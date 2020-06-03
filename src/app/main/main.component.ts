@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class MainComponent implements OnInit {
 
   constructor() { }
+  H1 = "Current Tasks"
+  H2 = "Upcoming Tasks"
 
   ngOnInit(): void {
   }
