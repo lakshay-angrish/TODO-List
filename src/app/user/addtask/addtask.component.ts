@@ -37,19 +37,15 @@ export class AddtaskComponent implements OnInit {
   addTask() {
     const args = {
       title: this.title,
-      due: this.due.toLocaleDateString(),
+      due: this.due,
       status: 'new',
       priority: this.pri,
       labels: [this.selectedTag]
     };
 
     this.http.post('http://localhost:3000/newTask', args, { responseType: 'text'}).subscribe((response) => {
-<<<<<<< HEAD
       alert(response);
       window.location.reload();
-=======
-      alert(this.selectedTag);
->>>>>>> added new fields in add task
     },
     (error) => {
       alert('Server Error!');
