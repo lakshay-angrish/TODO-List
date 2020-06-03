@@ -14,7 +14,7 @@
             <mat-datepicker #myDatePicker></mat-datepicker>
         </mat-form-field>
         <div>
-            <mat-form-field matTooltip="choose a tag">
+            <!-- <mat-form-field matTooltip="choose a tag">
                 <mat-label>choose an existing tag</mat-label>
                 <mat-select name="tags" [(ngModel)]="selectedTag">
                     <mat-option value="study">
@@ -30,11 +30,10 @@
             </mat-form-field>
             <button mat-button matTooltip="add a new tag" >
                 <mat-icon style="color: grey;">add</mat-icon>
-            </button>
+            </button> -->
             <span id="pri">
                &nbsp; Set Priority: &nbsp;<mat-slider color="warn" thumbLabel min="1" max="3" name="priority" (change)="onChange($event)" [displayWith]="formatLabel" step="1" value="1">
                 </mat-slider>
-                {{pri}}
             </span>
         </div>
         <div id="cen">
