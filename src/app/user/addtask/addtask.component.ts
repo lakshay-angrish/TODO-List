@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { STATUS_CODES } from 'http';
 
 @Component({
   selector: 'app-addtask',
@@ -8,25 +7,48 @@ import { STATUS_CODES } from 'http';
   styleUrls: ['./addtask.component.scss']
 })
 export class AddtaskComponent implements OnInit {
-  taskName = ' ';
-  dateSelector: Date;
-  constructor(private http: HttpClient) { }
+  title: string;
+  due: Date;
+  selectedTag: String;
+  minDate: Date;
+  pri: String;
+
+  constructor(private http: HttpClient) {
+    this.minDate = new Date(Date.now());
+  }
   ngOnInit(): void {
   }
-
-  addTaskToDb() {    
-    console.log(this.taskName);
-    const task = {
-      taskName: this.taskName,
-      date: this.dateSelector.toLocaleDateString()
+  formatLabel(val: number) {
+    switch(val) {
+      case 1: return "low";
+      case 2: return "med";
+      case 3: return "high";
     }
-      this.http.post('http://localhost:3000/newTask', task, {responseType: 'text'}).subscribe( 
-        data => {
-          console.log(data);  
-      },
-      err => {
-        console.log(err);
-      }
-      )
   }
+  onChange(value: Event) {
+    if (value["value"] == 1) {
+      this.pri = "low";
+    } else if (value["value"] == 2) {
+      this.pri = "medium";
+    } else {
+      this.pri = "hight"
+    }
+  }
+  addTask() {
+    const args = {
+      title: this.title,
+      due: this.due,
+      status: 'new',
+      priority: this.pri,
+      labels: [this.selectedTag]
+    };
+
+    this.http.post('http://localhost:3000/newTask', args, { responseType: 'text'}).subscribe((response) => {
+      alert(this.selectedTag);
+    },
+    (error) => {
+      alert('Server Error!');
+    });
+  }
+
 }

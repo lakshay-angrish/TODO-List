@@ -14,6 +14,13 @@
                 <mat-datepicker-toggle matSuffix [for]="myDatePicker"></mat-datepicker-toggle>
                 <mat-datepicker #myDatePicker></mat-datepicker>
             </mat-form-field>
+            <button mat-button matTooltip="add a new tag" >
+                <mat-icon style="color: grey;">add</mat-icon>
+            </button> -->
+            <span id="pri">
+               &nbsp; Set Priority: &nbsp;<mat-slider color="warn" thumbLabel min="1" max="3" name="priority" (change)="onChange($event)" [displayWith]="formatLabel" step="1" value="1">
+                </mat-slider>
+            </span>
         </div>
         <div id="cen">
             <button id="subButton" mat-button (click)="addTaskToDb()">Submit</button>

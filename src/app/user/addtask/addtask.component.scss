@@ -1,6 +1,6 @@
-.contanier {
-    width: 50%;
-}
+// .contanier {
+//     display: inline;
+// }
 #cen {
     text-align: center;
 }
@@ -10,3 +10,9 @@
         color: white;
     }
 } 
+mat-form-field {
+    padding-left: 10px;
+}
+#pri {
+    display: inline-block;
+}

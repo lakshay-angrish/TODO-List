@@ -2,7 +2,13 @@ var mongoose = require('mongoose');
 const express = require('express');
 var bodyparser = require('body-parser')
 const app = express();
+const cors = require('cors');
+var bodyparser = require("body-parser");
 var http = require('http').createServer(app);
+
+app.use(bodyparser.urlencoded( { extended: true } ));
+app.use(bodyparser.json());
+app.use(cors());
 
 const dbURL = 'mongodb://localhost/todo';
 // for CORS
@@ -41,15 +47,35 @@ process.on('SIGINT', function(){
 
 
 var taskSchema = new mongoose.Schema({
+<<<<<<< HEAD
   task: String,
   due: Date
+=======
+  title: {
+    type: String,
+    minlength: 1
+  },
+  due: Date,
+  status: {
+    type: String,
+    enum: ['new', 'running', 'finished']
+  },
+  priority: {
+    type: String,
+    enum: ['low', 'medium', 'high']
+  },
+  labels: {
+    type: [String],
+    lowercase: true
+  }
+>>>>>>> upstream/master
 }, {
   versionKey: false
 });
 
 var Task = new mongoose.model('Task', taskSchema);
 
-app.get('/tasks', (req, res) => {
+app.get('/allTasks', (req, res) => {
   Task.find((error, data) => {
     if (error) {
       console.log(error);
@@ -63,8 +89,16 @@ app.get('/tasks', (req, res) => {
 
 app.post('/newTask', (req, res) => {
   var newTask = new Task({
+<<<<<<< HEAD
     task: req.body.taskName,
     due: req.body.date
+=======
+    title: req.body.title,
+    due: req.body.due,
+    status: req.body.status,
+    priority: req.body.priority,
+    labels: req.body.labels
+>>>>>>> upstream/master
   });
 
 
@@ -74,6 +108,7 @@ app.post('/newTask', (req, res) => {
       res.send('Error while adding task. Try again.');
       console.log("AK");
     } else {
+      console.log('Task Added!');
       res.send('Task Added!');
     }
   });
