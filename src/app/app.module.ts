@@ -11,7 +11,6 @@ import { MaterialModule } from './material/material.module';
 import { HeaderComponent } from './header/header.component';
 import { AddtaskComponent } from './user/addtask/addtask.component';
 import { TasksLayoutComponent } from './tasks-layout/tasks-layout.component';
-import { TaskCardComponent } from './task-card/task-card.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +18,7 @@ import { TaskCardComponent } from './task-card/task-card.component';
     MainComponent,
     HeaderComponent,
     AddtaskComponent,
-    TasksLayoutComponent,
-    TaskCardComponent
+    TasksLayoutComponent
   ],
   imports: [
     BrowserModule,
