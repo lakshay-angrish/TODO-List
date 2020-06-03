@@ -2,21 +2,22 @@
     <h2>{{heading}}</h2>
 </div>
 <div id="content">
-    <div id="task">
-        <div class="card" >
-            <div id="container" >
-            <span id="name">Meeting</span>
-            <span id="dura">12:00 - 14:00</span>
-            <span id="disc">Meeting regarding recent issues</span>
-            </div>
-        </div>
-        
-        <div class="card" >
-            <div id="container" >
-            <span id="name">Meeting</span>
-            <span id="dura">12:00 - 14:00</span>
-            <span id="disc">Meeting regarding recent issues</span>
-            </div>
+  <h1 class="head">{{ H1 }}</h1>
+  <div id="task_today">
+      <div class="card" *ngFor="let task of tasksToday">
+          <div id="container" >
+            <span id="title">{{ task.title }}</span>
+            <span id="due">{{ task.due }}</span>
+          </div>
+      </div>
+  </div>
+  <h1 class="head">{{ H2 }}</h1>
+  <div id="task_upcoming">
+    <div class="card" *ngFor="let task of tasksUpcoming">
+        <div id="container" >
+          <span id="title">{{ task.title }}</span>
+          <span id="due">{{ task.due }}</span>
         </div>
     </div>
+  </div>
 </div>

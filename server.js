@@ -38,10 +38,7 @@ var taskSchema = new mongoose.Schema({
     type: String,
     minlength: 1
   },
-  due: {
-    type: Date,
-    min: Date.now()
-  },
+  due: Date,
   status: {
     type: String,
     enum: ['new', 'running', 'finished']
@@ -58,7 +55,7 @@ var taskSchema = new mongoose.Schema({
 
 var Task = new mongoose.model('Task', taskSchema);
 
-app.get('/tasks', (req, res) => {
+app.get('/allTasks', (req, res) => {
   Task.find((error, data) => {
     if (error) {
       console.log(error);

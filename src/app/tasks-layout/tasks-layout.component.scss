@@ -1,4 +1,4 @@
-#heading{
+.head{
     margin-top: 15px;
 }
 *{
@@ -12,24 +12,27 @@
     display: inline-block;
     margin-left: 20px;
     margin-right: 20px;
+    margin-top: 13px;
     padding-left: 15px;
 }
-#name{
+#title{
     display: inline-block;
     color: white  ;
     font-size: 16px;
-    font-style: bold;
+    font-weight: bold;
 }
 #disc{
     display: inline-block;
     color: white  ;
     font-size: 10px;
 }
-#dura{
+#due{
     display: inline-block;
     color: white  ;
     font-size: 12px;
+    font-weight: lighter;
 }
 #container{
     margin-bottom: 10px;
+    padding-top: 15px;
 }

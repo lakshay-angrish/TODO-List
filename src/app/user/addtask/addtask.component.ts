@@ -25,10 +25,12 @@ export class AddtaskComponent implements OnInit {
 
     this.http.post('http://localhost:3000/newTask', args, { responseType: 'text'}).subscribe((response) => {
       alert(response);
+      window.location.reload();
     },
     (error) => {
       alert('Server Error!');
     });
+
   }
 
 }
