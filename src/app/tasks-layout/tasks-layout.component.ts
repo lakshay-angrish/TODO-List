@@ -57,5 +57,8 @@ export class TasksLayoutComponent implements OnInit {
     const dialogRef = this.dialogBox.open(EditTaskComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(() => {});
   }
+  confirmDelete() {
+    confirm('click OK to confirm');
+  }
 
 }

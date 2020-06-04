@@ -13,6 +13,7 @@ export class EditTaskComponent implements OnInit {
   due: Date;
   minDate: Date;
   priority: string;
+  priorityVal: number;
 
   constructor(private http: HttpClient, private dialogRef: MatDialogRef<EditTaskComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.id = data._id;
@@ -20,6 +21,13 @@ export class EditTaskComponent implements OnInit {
     this.due = new Date(data.due);
     this.priority = data.priority;
     this.minDate = new Date(Date.now());
+    this.parsePriority(this.priority);
+  }
+
+  parsePriority(prio: String) {
+    if (prio == 'low') this.priorityVal = 1;
+    else if (prio == 'medium') this.priorityVal = 2;
+    else this.priorityVal = 3;
   }
 
   ngOnInit(): void {
