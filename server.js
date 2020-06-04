@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 const express = require('express');
+var bodyparser = require('body-parser')
 const app = express();
 const cors = require('cors');
 var bodyparser = require("body-parser");
@@ -11,6 +12,11 @@ app.use(cors());
 
 const dbURL = 'mongodb://localhost/todo';
 
+// bodyparser for json type data handling in the form of req and res body
+app.use(bodyparser.urlencoded({ extended: true }));
+app.use(bodyparser.json());
+
+app.use(corsMiddleware);
 mongoose.connect(dbURL, { useNewUrlParser: true });
 
 mongoose.connection.on('connected', function(){
@@ -51,6 +57,8 @@ var taskSchema = new mongoose.Schema({
     type: [String],
     lowercase: true
   }
+}, {
+  versionKey: false
 });
 
 var Task = new mongoose.model('Task', taskSchema);
@@ -75,6 +83,7 @@ app.post('/newTask', (req, res) => {
     priority: req.body.priority,
     labels: req.body.labels
   });
+
 
   newTask.save((error) => {
     if (error) {

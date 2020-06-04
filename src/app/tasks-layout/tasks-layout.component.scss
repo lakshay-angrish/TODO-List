@@ -1,38 +1,50 @@
-.head{
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+.head {
     margin-top: 15px;
-}
-*{
-    font-family: 'Roboto', sans-serif;
-}
-.card{
-    height : 80px;
-    width: 110px;
-    border-radius: 5px;
-    background-color: blueviolet;
-    display: inline-block;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 13px;
-    padding-left: 15px;
-}
-#title{
-    display: inline-block;
-    color: white  ;
-    font-size: 16px;
+    font-family: Montserrat, 'Courier New', Courier, monospace;
     font-weight: bold;
 }
-#disc{
-    display: inline-block;
-    color: white  ;
-    font-size: 10px;
+* {
+    font-family: Montserrat, sans-serif;
 }
-#due{
-    display: inline-block;
-    color: white  ;
-    font-size: 12px;
-    font-weight: lighter;
+@mixin task-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
 }
-#container{
-    margin-bottom: 10px;
-    padding-top: 15px;
+
+#task_today {
+    @include task-card;
+}
+#task_upcoming {
+    @include task-card;
+}
+.card{
+    height : auto;
+    width: auto;
+    border-radius: 5px;
+    background: #305F72;
+    &:hover {
+        transition: 0.2s;
+        box-shadow: 7px 5px rgb(180, 175, 175);
+    }
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 0;
+    margin: 0.5em 1em 1em 0.5em;//TRBL
+    color: white;
+}
+#title {
+    font-family: 'Permanent Marker', sans-serif;
+    font-size: 1.3em;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+}
+#due {
+    font-size: 0.8em;
 }
