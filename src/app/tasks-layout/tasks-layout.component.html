@@ -1,22 +1,28 @@
 <div *ngIf="heading" id='heading'>
-    <h2>{{heading}}</h2>
+    <h2>{{ heading }}</h2>
 </div>
 <div id="content">
   <h1 class="head">{{ H1 }}</h1>
   <div id="task_today">
       <div class="card" *ngFor="let task of tasksToday">
-          <div id="container" >
-            <span id="title">{{ task.title | titlecase }}</span>
-            <span id="due">{{ task.due }}</span>
+          <div class="container" >
+            <span class="title">{{ task.title | titlecase }}</span>
+            <span class="due">{{ task.due }}</span>
+            <button mat-mini-fab color="primary" (click)="openEditTaskDialog(task)">
+              <mat-icon>edit</mat-icon>
+            </button>
           </div>
       </div>
   </div>
   <h1 class="head">{{ H2 }}</h1>
   <div id="task_upcoming">
     <div class="card" *ngFor="let task of tasksUpcoming">
-        <div id="container" >
-          <div id="title">{{ task.title | titlecase }}</div>
-          <span id="due">{{ task.due }}</span>
+        <div class="container" >
+          <span class="title">{{ task.title | titlecase }}</span>
+          <span class="due">{{ task.due }}</span>
+          <button mat-mini-fab color="primary" (click)="openEditTaskDialog(task)">
+            <mat-icon>edit</mat-icon>
+          </button>
         </div>
     </div>
   </div>

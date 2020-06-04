@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { EditTaskComponent } from '../user/edit-task/edit-task.component';
 
 @Component({
   selector: 'app-tasks-layout',
@@ -16,7 +18,7 @@ export class TasksLayoutComponent implements OnInit {
   H1 = 'Due Today';
   H2 = 'Upcoming';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private dialogBox: MatDialog) { }
 
 
   ngOnInit(): void {
@@ -45,6 +47,15 @@ export class TasksLayoutComponent implements OnInit {
           task.due = new Date(task.due).toDateString();
         }
     });
+  }
+
+  openEditTaskDialog(task) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = task;
+
+    const dialogRef = this.dialogBox.open(EditTaskComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(() => {});
   }
 
 }

@@ -1,0 +1,31 @@
+<div class="container">
+  <form action="" novalidate>
+      <mat-form-field hideRequiredMarker formnovalidate name="newTask" appearance="standard" color="primary"
+          [style.width.ex]="30">
+          <mat-label>
+              type a task...
+          </mat-label>
+          <input name="title" alt="add" matInput type="text" [(ngModel)]="title" required />
+      </mat-form-field>
+      <mat-form-field matTooltip="choose a date">
+          <mat-label>add a due date</mat-label>
+          <input name="due" placeholder="{{ due }}" [min]="minDate" matInput [matDatepicker]="myDatePicker" [(ngModel)]="due" />
+          <mat-datepicker-toggle matSuffix [for]="myDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #myDatePicker></mat-datepicker>
+      </mat-form-field>
+      <div>
+          <span id="priority">
+             &nbsp; Set Priority: &nbsp;<mat-slider color="warn" thumbLabel min="1" max="3" name="priority" (change)="onChange($event)" [displayWith]="formatLabel" step="1" value="1">
+              </mat-slider>
+          </span>
+      </div>
+      <div id="cen">
+          <button id="subButton" mat-button mat-dialog-close (click)="editTask()">
+            Submit
+          </button>
+          <button id="deleteButton" mat-button mat-dialog-close (click)="deleteTask()">
+            Delete
+          </button>
+      </div>
+  </form>
+</div>

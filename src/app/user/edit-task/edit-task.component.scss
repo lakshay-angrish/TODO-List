@@ -1,0 +1,15 @@
+#cen {
+  text-align: center;
+}
+#subButton {
+  &:hover {
+      background-color: rgb(49, 47, 47);
+      color: white;
+  }
+}
+mat-form-field {
+  padding-left: 10px;
+}
+#priority {
+  display: inline-block;
+}
