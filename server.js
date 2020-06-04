@@ -5,6 +5,7 @@ const app = express();
 const cors = require('cors');
 var bodyparser = require("body-parser");
 var http = require('http').createServer(app);
+const ObjectID = require('mongodb').ObjectID;
 
 app.use(bodyparser.urlencoded( { extended: true } ));
 app.use(bodyparser.json());
@@ -12,11 +13,6 @@ app.use(cors());
 
 const dbURL = 'mongodb://localhost/todo';
 
-// bodyparser for json type data handling in the form of req and res body
-app.use(bodyparser.urlencoded({ extended: true }));
-app.use(bodyparser.json());
-
-app.use(corsMiddleware);
 mongoose.connect(dbURL, { useNewUrlParser: true });
 
 mongoose.connection.on('connected', function(){
@@ -61,6 +57,9 @@ var taskSchema = new mongoose.Schema({
   versionKey: false
 });
 
+//this makes sure that there are no two tasks with the same title and due date
+taskSchema.index({title: 1, due: 1}, { unique: true });
+
 var Task = new mongoose.model('Task', taskSchema);
 
 app.get('/allTasks', (req, res) => {
@@ -92,6 +91,36 @@ app.post('/newTask', (req, res) => {
     } else {
       console.log('Task Added!');
       res.send('Task Added!');
+    }
+  });
+});
+
+app.post('/editTask', (req, res) => {
+  Task.replaceOne({
+    _id: ObjectID(req.body._id)
+  },
+  req.body
+  , (error) => {
+    if (error) {
+      console.log(error);
+      res.send('Error while editing task. Try again.');
+    } else {
+      console.log('Task Updated!');
+      res.send('Task Updated!');
+    }
+  });
+});
+
+app.put('/deleteTask', (req, res) => {
+  Task.deleteOne({
+    _id: ObjectID(req.body._id)
+  }, (error) => {
+    if (error) {
+      console.log(error);
+      res.send('Error while deleting task. Try again.');
+    } else {
+      console.log('Task Deleted!');
+      res.send('Task Deleted!');
     }
   });
 });

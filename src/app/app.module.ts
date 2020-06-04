@@ -11,6 +11,7 @@ import { MaterialModule } from './material/material.module';
 import { HeaderComponent } from './header/header.component';
 import { AddtaskComponent } from './user/addtask/addtask.component';
 import { TasksLayoutComponent } from './tasks-layout/tasks-layout.component';
+import { EditTaskComponent } from './user/edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TasksLayoutComponent } from './tasks-layout/tasks-layout.component';
     MainComponent,
     HeaderComponent,
     AddtaskComponent,
-    TasksLayoutComponent
+    TasksLayoutComponent,
+    EditTaskComponent
   ],
   imports: [
     FormsModule,
