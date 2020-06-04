@@ -15,10 +15,10 @@
 }
 
 #task_today {
-    @include task-card();
+    @include task-card;
 }
 #task_upcoming {
-    @include task-card();
+    @include task-card;
 }
 .card{
     height : auto;
@@ -40,7 +40,7 @@
     color: white;
 }
 #title {
-    font-family: 'Permanent Marker';
+    font-family: 'Permanent Marker', sans-serif;
     font-size: 1.3em;
     letter-spacing: 1.5px;
     line-height: 1.2;

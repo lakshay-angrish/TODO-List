@@ -11,14 +11,7 @@ app.use(bodyparser.json());
 app.use(cors());
 
 const dbURL = 'mongodb://localhost/todo';
-// for CORS
-//CORS middleware
-var corsMiddleware = function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, PATCH, POST, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With, Authorization');
-  next();
-}
+
 // bodyparser for json type data handling in the form of req and res body
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
@@ -96,7 +89,6 @@ app.post('/newTask', (req, res) => {
     if (error) {
       console.log(error);
       res.send('Error while adding task. Try again.');
-      console.log("AK");
     } else {
       console.log('Task Added!');
       res.send('Task Added!');
