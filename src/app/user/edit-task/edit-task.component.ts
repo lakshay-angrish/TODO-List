@@ -56,7 +56,7 @@ export class EditTaskComponent implements OnInit {
       labels: [],
       title: this.title,
       due: this.due,
-      status: 'new',
+      status: 'running',
       priority: this.priority
     };
 

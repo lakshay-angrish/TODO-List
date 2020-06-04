@@ -10,10 +10,10 @@
             <span class="due">{{ task.due }}</span>
             <span>
               <button mat-button color="primary" (click)="openEditTaskDialog(task)">
-              <img src="../../assets/images/edit_pencil.svg" alt="">
+              <img src="../../assets/images/edit_pencil.svg" alt="edit task">
             </button>
-            <button mat-button color="primary" (click)="confirmDelete()">
-              <img src="../../assets/images/done.svg" width="20" color="green" alt="">
+            <button mat-button color="primary" (click)="doneTask(task._id)">
+              <img src="../../assets/images/done.svg" width="20" color="green" alt="done task">
             </button> 
           </span>
 
@@ -27,14 +27,23 @@
           <span class="title">{{ task.title | titlecase }}</span>
           <span class="due">{{ task.due }}</span>
           <span class="edit-button">
-          <button mat-button color="primary" (click)="openEditTaskDialog(task)">
-            <img src="../../assets/images/edit_pencil.png" alt="">
-          </button>
-          <button mat-button color="primary" (click)="confirmDelete()">
-              <img src="../../assets/images/done.svg" width="20" color="green" alt="">
+            <button mat-button color="primary" (click)="openEditTaskDialog(task)">
+              <img src="../../assets/images/edit_pencil.svg" alt="edit task">
+            </button>
+          <button mat-button color="primary" (click)="doneTask(task._id)">
+              <img src="../../assets/images/done.svg" width="20" color="green" alt="done task">
             </button>
         </span>
         </div>
     </div>
+  </div>
+  <h1 class="head">{{ H3 }}</h1>
+  <div id="task_completed">
+      <div class="card" *ngFor="let task of taskCompleted">
+          <div class="container" >
+            <span class="title">{{ task.title | titlecase }}</span>
+            <span class="due">{{ task.due }}</span>
+          </div>
+      </div>
   </div>
 </div>

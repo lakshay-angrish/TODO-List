@@ -38,7 +38,7 @@ export class AddtaskComponent implements OnInit {
     const args = {
       title: this.title,
       due: this.due,
-      status: 'new',
+      status: 'running',
       priority: this.pri,
       labels: [this.selectedTag]
     };

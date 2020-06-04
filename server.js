@@ -43,7 +43,7 @@ var taskSchema = new mongoose.Schema({
   due: Date,
   status: {
     type: String,
-    enum: ['new', 'running', 'finished']
+    enum: ['running', 'expired', 'finished']
   },
   priority: {
     type: String,
@@ -107,6 +107,21 @@ app.post('/editTask', (req, res) => {
     } else {
       console.log('Task Updated!');
       res.send('Task Updated!');
+    }
+  });
+});
+
+app.put('/updateStatus', (req, res) => {
+  Task.updateOne(
+  { _id: ObjectID(req.body.id) },
+  { status: "finished" }
+  , (error) => {
+    if (error) {
+      console.log(error);
+      res.send('Error while updating status. Try again.');
+    } else {
+      console.log('Status updated to finished!');
+      res.send('Status updated to finished!');
     }
   });
 });

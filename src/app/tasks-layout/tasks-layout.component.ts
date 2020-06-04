@@ -11,18 +11,21 @@ import { EditTaskComponent } from '../user/edit-task/edit-task.component';
 export class TasksLayoutComponent implements OnInit {
   tasksToday: any[] = [];
   tasksUpcoming: any[] = [];
+  taskCompleted: any[] = [];
 
   @Input() heading: Text;
   color1 = '#8bd136';
   color2 = '#33e0f1';
   H1 = 'Due Today';
   H2 = 'Upcoming';
+  H3 = 'Completed';
 
   constructor(private http: HttpClient, private dialogBox: MatDialog) { }
 
 
   ngOnInit(): void {
     this.getAllTasks();
+    console.log(this.taskCompleted);
   }
 
   getAllTasks() {
@@ -31,12 +34,16 @@ export class TasksLayoutComponent implements OnInit {
         for (const task of response) {
           const date = new Date(task.due);
           const now = new Date();
-
-          if (date.getDay() === now.getDay() && date.getMonth() == now.getMonth() && date.getFullYear() === now.getFullYear()) {
-            this.tasksToday.push(task);
-          } else {
-            this.tasksUpcoming.push(task);
+          if (task['status'] === 'running') {
+            if (date.getDay() === now.getDay() && date.getMonth() == now.getMonth() && date.getFullYear() === now.getFullYear()) {
+              this.tasksToday.push(task);
+            } else {
+              this.tasksUpcoming.push(task);
+            }
+          } else if (task['status'] === 'finished') {
+            this.taskCompleted.push(task);
           }
+          // 'task['status'] === expired'
         }
 
         for (const task of this.tasksToday) {
@@ -44,6 +51,9 @@ export class TasksLayoutComponent implements OnInit {
         }
 
         for (const task of this.tasksUpcoming) {
+          task.due = new Date(task.due).toDateString();
+        }
+        for (const task of this.taskCompleted) {
           task.due = new Date(task.due).toDateString();
         }
     });
@@ -57,8 +67,15 @@ export class TasksLayoutComponent implements OnInit {
     const dialogRef = this.dialogBox.open(EditTaskComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(() => {});
   }
-  confirmDelete() {
-    confirm('click OK to confirm');
+  doneTask(id: String) {
+    var isTrue = confirm('click OK to confirm');
+    if (isTrue) {
+      this.http.put('http://localhost:3000/updateStatus', {id: id}, {responseType: 'text'}).subscribe(
+        (res) => {
+          console.log(res);
+          window.location.reload();
+        }
+      );
+    }
   }
-
 }
