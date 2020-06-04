@@ -6,7 +6,7 @@
   <div id="task_today">
       <div class="card" *ngFor="let task of tasksToday">
           <div id="container" >
-            <span id="title">{{ task.title }}</span>
+            <span id="title">{{ task.title | titlecase }}</span>
             <span id="due">{{ task.due }}</span>
           </div>
       </div>
@@ -15,7 +15,7 @@
   <div id="task_upcoming">
     <div class="card" *ngFor="let task of tasksUpcoming">
         <div id="container" >
-          <span id="title">{{ task.title }}</span>
+          <div id="title">{{ task.title | titlecase }}</div>
           <span id="due">{{ task.due }}</span>
         </div>
     </div>

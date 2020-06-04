@@ -31,7 +31,7 @@ export class AddtaskComponent implements OnInit {
     } else if (value["value"] == 2) {
       this.pri = "medium";
     } else {
-      this.pri = "hight"
+      this.pri = "high";
     }
   }
   addTask() {
@@ -50,7 +50,6 @@ export class AddtaskComponent implements OnInit {
     (error) => {
       alert('Server Error!');
     });
-
   }
 
 }

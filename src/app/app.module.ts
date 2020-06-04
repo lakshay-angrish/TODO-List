@@ -21,10 +21,11 @@ import { TasksLayoutComponent } from './tasks-layout/tasks-layout.component';
     TasksLayoutComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     MaterialModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule
   ],
