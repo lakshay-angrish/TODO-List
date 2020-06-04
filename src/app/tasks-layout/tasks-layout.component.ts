@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditTaskComponent } from '../user/edit-task/edit-task.component';
+import { ReloadService } from '../reload.service';
 
 @Component({
   selector: 'app-tasks-layout',
@@ -11,7 +12,7 @@ import { EditTaskComponent } from '../user/edit-task/edit-task.component';
 export class TasksLayoutComponent implements OnInit {
   tasksToday: any[] = [];
   tasksUpcoming: any[] = [];
-  taskCompleted: any[] = [];
+  tasksCompleted: any[] = [];
 
   @Input() heading: Text;
   color1 = '#8bd136';
@@ -20,17 +21,22 @@ export class TasksLayoutComponent implements OnInit {
   H2 = 'Upcoming';
   H3 = 'Completed';
 
-  constructor(private http: HttpClient, private dialogBox: MatDialog) { }
+  constructor(private http: HttpClient, private dialogBox: MatDialog, private reload: ReloadService) { }
 
 
   ngOnInit(): void {
-    this.getAllTasks();
-    console.log(this.taskCompleted);
+    this.reload.action.subscribe((op) => {
+      this.getAllTasks();
+    });
   }
 
   getAllTasks() {
     this.http.get('http://localhost:3000/allTasks', { responseType: 'json' }).subscribe(
       (response: any[]) => {
+        this.tasksToday = [];
+        this.tasksUpcoming = [];
+        this.tasksCompleted = [];
+
         for (const task of response) {
           const date = new Date(task.due);
           const now = new Date();
@@ -41,9 +47,8 @@ export class TasksLayoutComponent implements OnInit {
               this.tasksUpcoming.push(task);
             }
           } else if (task['status'] === 'finished') {
-            this.taskCompleted.push(task);
+            this.tasksCompleted.push(task);
           }
-          // 'task['status'] === expired'
         }
 
         for (const task of this.tasksToday) {
@@ -53,7 +58,7 @@ export class TasksLayoutComponent implements OnInit {
         for (const task of this.tasksUpcoming) {
           task.due = new Date(task.due).toDateString();
         }
-        for (const task of this.taskCompleted) {
+        for (const task of this.tasksCompleted) {
           task.due = new Date(task.due).toDateString();
         }
     });
@@ -65,7 +70,9 @@ export class TasksLayoutComponent implements OnInit {
     dialogConfig.data = task;
 
     const dialogRef = this.dialogBox.open(EditTaskComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(() => {});
+    dialogRef.afterClosed().subscribe(() => {
+      this.getAllTasks();
+    });
   }
   doneTask(id: String) {
     var isTrue = confirm('click OK to confirm');
@@ -73,7 +80,7 @@ export class TasksLayoutComponent implements OnInit {
       this.http.put('http://localhost:3000/updateStatus', {id: id}, {responseType: 'text'}).subscribe(
         (res) => {
           console.log(res);
-          window.location.reload();
+          this.getAllTasks();
         }
       );
     }

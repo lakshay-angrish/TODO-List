@@ -62,7 +62,6 @@ export class EditTaskComponent implements OnInit {
 
     this.http.post('http://localhost:3000/editTask', args, { responseType: 'text'}).subscribe((response) => {
       alert(response);
-      window.location.reload();
     },
     (error) => {
       alert('Server Error!');
@@ -76,7 +75,6 @@ export class EditTaskComponent implements OnInit {
     this.http.put('http://localhost:3000/deleteTask', args, { responseType: 'text'}).subscribe(
       (response) => {
         alert(response);
-        window.location.reload();
       },
       (error) => {
         alert(error);
