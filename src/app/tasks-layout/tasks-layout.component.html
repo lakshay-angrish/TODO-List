@@ -14,7 +14,7 @@
             </button>
             <button mat-button color="primary" (click)="doneTask(task._id)">
               <img src="../../assets/images/done.svg" width="20" color="green" alt="done task">
-            </button> 
+            </button>
           </span>
 
           </div>
@@ -39,7 +39,7 @@
   </div>
   <h1 class="head">{{ H3 }}</h1>
   <div id="task_completed">
-      <div class="card" *ngFor="let task of taskCompleted">
+      <div class="card" *ngFor="let task of tasksCompleted">
           <div class="container" >
             <span class="title">{{ task.title | titlecase }}</span>
             <span class="due">{{ task.due }}</span>
