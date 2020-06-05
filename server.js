@@ -112,6 +112,7 @@ app.post('/editTask', (req, res) => {
 });
 
 app.put('/updateStatus', (req, res) => {
+  console.log(ObjectID(req.body.id))
   Task.updateOne(
   { _id: ObjectID(req.body.id) },
   { status: "finished" }
@@ -140,6 +141,28 @@ app.put('/deleteTask', (req, res) => {
   });
 });
 
+app.post('/searchTask',(req,res) => {
+  var noMatch = null;
+
+    const regex = new RegExp(escapeRegex(req.body.text), 'gi');
+    Task.find({title: regex},function(err, data){
+      if(err){
+        console.log(err);
+      }else{
+        if(data.length < 1) {
+          noMatch = "No campgrounds match that query, please try again.";
+      }
+        // res.render("",{Task:data, noMatch: noMatch});
+        console.log(data);
+        res.send(data);
+      }
+    })
+});
+
 http.listen(3000, () => {
   console.log('listening on http://localhost:3000');
 });
+
+function escapeRegex(text){
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
