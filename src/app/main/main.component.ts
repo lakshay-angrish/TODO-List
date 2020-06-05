@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-
-  constructor() { }
+  minDate: Date;
+  constructor() { 
+    this.minDate = new Date(Date.now());
+  }
 
   ngOnInit(): void {
   }
