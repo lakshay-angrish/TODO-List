@@ -41,7 +41,7 @@ export class TasksLayoutComponent implements OnInit {
           const date = new Date(task.due);
           const now = new Date();
           if (task['status'] === 'running') {
-            if (date.getDay() === now.getDay() && date.getMonth() == now.getMonth() && date.getFullYear() === now.getFullYear()) {
+            if (date.getDate() === now.getDate() && date.getMonth() == now.getMonth() && date.getFullYear() === now.getFullYear()) {
               this.tasksToday.push(task);
             } else {
               this.tasksUpcoming.push(task);
