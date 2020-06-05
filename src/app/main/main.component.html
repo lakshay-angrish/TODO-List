@@ -1,18 +1,9 @@
-<div id="sixedBox"></div>
+<div id="sizedBox"></div>
 <div class="container">
     <div class="leftbar">
-        <div>
-            calender
-        </div>
-        <div>
-            calender
-        </div>
-        <div>
-            calender
-        </div>
-        <div>
-            calender
-        </div>
+            <input [matDatepicker]="myDatePicker" style="visibility: hidden;"/>
+            <mat-datepicker #myDatePicker></mat-datepicker>
+            <button mat-raised-button (click)="myDatePicker.open()">CALENDAR</button>
     </div>
     <div class="center">
         <app-tasks-layout></app-tasks-layout>
