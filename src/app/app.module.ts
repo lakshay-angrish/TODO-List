@@ -20,7 +20,7 @@ import { EditTaskComponent } from './user/edit-task/edit-task.component';
     HeaderComponent,
     AddtaskComponent,
     TasksLayoutComponent,
-    EditTaskComponent
+    EditTaskComponent,
   ],
   imports: [
     FormsModule,

@@ -3,6 +3,8 @@ import {MatDialog} from '@angular/material/dialog';
 import { AddtaskComponent } from '../user/addtask/addtask.component';
 import { ReloadService } from '../reload.service';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import {SearchService} from '../search.service';
 
 @Component({
   selector: 'app-header',
@@ -12,9 +14,11 @@ import { HttpClient } from '@angular/common/http';
 export class HeaderComponent implements OnInit {
 
   searchData: any[] = [];
-  constructor(private http: HttpClient,public dialogBox: MatDialog, private reload: ReloadService) { }
+  searchResults: any[] = [];
+  constructor(private data: SearchService,private http: HttpClient,public dialogBox: MatDialog, private reload: ReloadService) { }
 
   ngOnInit(): void {
+    this.data.currentMessage.subscribe(searchResults => this.searchResults = searchResults)
   }
   openAddNewTaskDialog() {
     const dialogRef = this.dialogBox.open(AddtaskComponent);
@@ -39,6 +43,11 @@ export class HeaderComponent implements OnInit {
         alert(error);
       }
     );
+    this.data.changeMessage(this.searchData)
+
   }
+
+
+  
 }
 

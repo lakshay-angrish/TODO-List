@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditTaskComponent } from '../user/edit-task/edit-task.component';
 import { ReloadService } from '../reload.service';
+import {SearchService} from '../search.service';
+import { convertActionBinding } from '@angular/compiler/src/compiler_util/expression_converter';
 
 @Component({
   selector: 'app-tasks-layout',
@@ -10,32 +12,46 @@ import { ReloadService } from '../reload.service';
   styleUrls: ['./tasks-layout.component.scss']
 })
 export class TasksLayoutComponent implements OnInit {
+
   tasksToday: any[] = [];
   tasksUpcoming: any[] = [];
   tasksCompleted: any[] = [];
+  searchResults: any[] = [];
+  H1: string;
+  H2: string;
+  H3: string;
+  H4: string;
 
   @Input() heading: Text;
   color1 = '#8bd136';
   color2 = '#33e0f1';
-  H1 = 'Due Today';
-  H2 = 'Upcoming';
-  H3 = 'Completed';
+  
 
-  constructor(private http: HttpClient, private dialogBox: MatDialog, private reload: ReloadService) { }
+  constructor(private data: SearchService,private http: HttpClient, private dialogBox: MatDialog, private reload: ReloadService) {
+
+   }
 
 
   ngOnInit(): void {
+    this.data.currentMessage.subscribe(searchResults => this.searchResults = searchResults);
     this.reload.action.subscribe((op) => {
-      this.getAllTasks();
+        console.log(this.searchResults.length);
+        this.getAllTasks();
     });
   }
 
   getAllTasks() {
+
+    // if(this.searchResults.length == 0){
+
     this.http.get('http://localhost:3000/allTasks', { responseType: 'json' }).subscribe(
       (response: any[]) => {
         this.tasksToday = [];
         this.tasksUpcoming = [];
         this.tasksCompleted = [];
+         this.H1 = 'Due Today';
+         this.H2 = 'Upcoming';
+         this.H3 = 'Completed';
 
         for (const task of response) {
           const date = new Date(task.due);
@@ -62,7 +78,18 @@ export class TasksLayoutComponent implements OnInit {
           task.due = new Date(task.due).toDateString();
         }
     });
+  // }else{
+  //   console.log(this.searchResults.length);
+  //   this.H4 = 'Search Results';
+  //     this.H1 = '';
+  //     this.H2 = '';
+  //     this.H3 = '';
+  //     this.tasksToday = [];
+  //     this.tasksUpcoming = [];
+  //     this.tasksCompleted = []
+  // }
   }
+
 
   openEditTaskDialog(task) {
     const dialogConfig = new MatDialogConfig();
