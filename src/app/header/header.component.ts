@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AddtaskComponent } from '../user/addtask/addtask.component';
 import { ReloadService } from '../reload.service';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
 import {SearchService} from '../search.service';
 
 @Component({
@@ -12,20 +11,20 @@ import {SearchService} from '../search.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  firstName = 'User';
   searchData: any[] = [];
   searchResults: any[] = [];
-  constructor(private data: SearchService,private http: HttpClient,public dialogBox: MatDialog, private reload: ReloadService) { }
+  constructor(private data: SearchService, private http: HttpClient, public dialogBox: MatDialog, private reload: ReloadService) { }
 
   ngOnInit(): void {
-    this.data.currentMessage.subscribe(searchResults => this.searchResults = searchResults)
+    this.data.currentMessage.subscribe(searchResults => this.searchResults = searchResults);
+    this.firstName = sessionStorage.getItem('firstName');
   }
   openAddNewTaskDialog() {
     const dialogRef = this.dialogBox.open(AddtaskComponent);
     dialogRef.afterClosed().subscribe(() => {
-      // console.log('Dialog result: ');
       this.reload.sendAction(true);
-    })
+    });
   }
 
   searchText(query: string) {

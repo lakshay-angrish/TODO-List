@@ -215,8 +215,8 @@ app.post('/logIn', async (req, res) => {
     } else {
       const match = await bcrypt.compare(req.body.password, user.password);
       if (match) {
-        res.send('User Authenticated.');
-        console.log('User Authenticated.');
+        res.send(user.firstName);
+        console.log(user.firstName);
       } else {
         res.status(500).send('User not found.');
         console.log('User not found');

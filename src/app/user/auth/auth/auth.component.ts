@@ -28,8 +28,9 @@ export class AuthComponent implements OnInit {
     };
 
     this.http.post('http://localhost:3000/logIn', args, { responseType: 'text' }).subscribe((response) => {
-      alert(response);
+      alert('User Authenticated');
       sessionStorage.setItem('email', this.email);
+      sessionStorage.setItem('firstName', response);
       this.router.navigate(['/main']);
     }, (error) => {
       console.log(error);
@@ -48,6 +49,7 @@ export class AuthComponent implements OnInit {
     this.http.post('http://localhost:3000/signUp', args, { responseType: 'text' }).subscribe((response) => {
       alert(response);
       sessionStorage.setItem('email', this.email);
+      sessionStorage.setItem('firstName', args.firstName);
       this.router.navigate(['/main']);
     }, (error) => {
       console.log(error);
