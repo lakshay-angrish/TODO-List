@@ -4,15 +4,15 @@
 <div id="content">
   <h1 class="head" *ngIf="isVisibleToday">{{ H1 }}</h1>
   <div id="task_today" *ngIf="isVisibleToday">
-      <div class="card" *ngFor="let task of tasksToday">
+      <div class="card" *ngFor="let task of tasksToday" (click) = "cardClick(task)">
           <div class="container" >
             <span class="title">{{ task.title | titlecase }}</span>
             <span class="due">{{ task.due }}</span>
             <span>
-              <button mat-button color="primary" (click)="openEditTaskDialog(task)">
+              <button mat-button color="primary" (click)="openEditTaskDialog(task);$event.stopPropagation()" >
               <img src="../../assets/images/edit_pencil.svg" alt="edit task">
             </button>
-            <button mat-button color="primary" (click)="doneTask(task._id)">
+            <button mat-button color="primary" (click)="doneTask(task._id);$event.stopPropagation()">
               <img src="../../assets/images/done.svg" width="20" color="green" alt="done task">
             </button>
           </span>
@@ -22,15 +22,15 @@
   </div>
   <h1 class="head" *ngIf="isVisibleUpcoming">{{ H2 }}</h1>
   <div id="task_upcoming" *ngIf="isVisibleUpcoming">
-    <div class="card" *ngFor="let task of tasksUpcoming">
+    <div class="card" *ngFor="let task of tasksUpcoming" (click) = "cardClick(task)">
         <div class="container" >
           <span class="title">{{ task.title | titlecase }}</span>
           <span class="due">{{ task.due }}</span>
           <span class="edit-button">
-            <button mat-button color="primary" (click)="openEditTaskDialog(task)">
+            <button mat-button color="primary" (click)="openEditTaskDialog(task);$event.stopPropagation()">
               <img src="../../assets/images/edit_pencil.svg" alt="edit task">
             </button>
-          <button mat-button color="primary" (click)="doneTask(task._id)">
+          <button mat-button color="primary" (click)="doneTask(task._id);$event.stopPropagation()">
               <img src="../../assets/images/done.svg" width="20" color="green" alt="done task">
             </button>
         </span>
@@ -39,7 +39,7 @@
   </div>
   <h1 class="head" *ngIf="isVisibleCompleted">{{ H3 }}</h1>
   <div id="task_completed" *ngIf="isVisibleCompleted">
-      <div class="card" *ngFor="let task of tasksCompleted">
+      <div class="card" *ngFor="let task of tasksCompleted" (click) = "cardClick(task)">
           <div class="container" >
             <span class="title">{{ task.title | titlecase }}</span>
             <span class="due">{{ task.due }}</span>
@@ -53,15 +53,15 @@
     <h1 id="search-head" class="head">{{ H4 }}</h1>
   </div>
   <div id="search_results">
-    <div class="card" *ngFor="let task of searchResults">
+    <div class="card" *ngFor="let task of searchResults" (click) = "cardClick(task)">
         <div class="container" >
           <span class="title">{{ task.title | titlecase }}</span>
           <span class="due">{{ task.due }}</span>
           <span class="edit-button">
-            <button mat-button color="primary" (click)="openEditTaskDialog(task)">
+            <button mat-button color="primary" (click)="openEditTaskDialog(task);$event.stopPropagation()">
               <img src="../../assets/images/edit_pencil.svg" alt="edit task">
             </button>
-          <button mat-button color="primary" (click)="doneTask(task._id)">
+          <button mat-button color="primary" (click)="doneTask(task._id);$event.stopPropagation()">
               <img src="../../assets/images/done.svg" width="20" color="green" alt="done task">
             </button>
         </span>

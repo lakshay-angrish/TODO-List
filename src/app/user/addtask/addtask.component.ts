@@ -19,6 +19,8 @@ export class AddtaskComponent implements OnInit {
   minDate: Date;
   pri: String;
   selectedValue: String;
+  textdata: String;
+
 
   labels: Label[] = [
     {value: 'personal', viewValue: 'Personal'},
@@ -54,8 +56,10 @@ export class AddtaskComponent implements OnInit {
       due: this.due,
       status: 'running',
       priority: this.pri,
-      labels: [this.selectedValue]
+      labels: [this.selectedValue],
+      description: this.textdata
     };
+    console.log(this.textdata)
 
     this.http.post('http://localhost:3000/newTask', args, { responseType: 'text'}).subscribe((response) => {
       alert(response);

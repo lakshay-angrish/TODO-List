@@ -13,6 +13,7 @@ import { AddtaskComponent } from './user/addtask/addtask.component';
 import { TasksLayoutComponent } from './tasks-layout/tasks-layout.component';
 import { EditTaskComponent } from './user/edit-task/edit-task.component';
 import { AuthComponent } from './user/auth/auth/auth.component';
+import { TaskinfoComponent } from './user/taskinfo/taskinfo.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AuthComponent } from './user/auth/auth/auth.component';
     AddtaskComponent,
     TasksLayoutComponent,
     EditTaskComponent,
-    AuthComponent
+    AuthComponent,
+    TaskinfoComponent
   ],
   imports: [
     FormsModule,

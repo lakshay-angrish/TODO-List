@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditTaskComponent } from '../user/edit-task/edit-task.component';
 import { ReloadService } from '../reload.service';
 import {SearchService} from '../search.service';
+import {TaskinfoComponent} from '../user/taskinfo/taskinfo.component'
 
 @Component({
   selector: 'app-tasks-layout',
@@ -135,5 +136,13 @@ export class TasksLayoutComponent implements OnInit {
     this.H4 = "";
     this.searchResults=[];
     this.reload.sendAction(true);
+  }
+  cardClick(task){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = task;
+
+    const dialogRef = this.dialogBox.open(TaskinfoComponent, dialogConfig);
+    
   }
 }

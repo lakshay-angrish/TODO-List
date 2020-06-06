@@ -20,6 +20,7 @@ export class EditTaskComponent implements OnInit {
   priority: string;
   priorityVal: number;
   selectedValue: String;
+  textdata: String;
 
   labels: Label[] = [
     {value: 'personal', viewValue: 'Personal'},
@@ -35,8 +36,8 @@ export class EditTaskComponent implements OnInit {
     this.priority = data.priority;
     this.minDate = new Date(Date.now());
     this.parsePriority(this.priority);
-    console.log(data.labels);
     this.selectedValue = data.labels[0];
+    this.textdata = data.description;
   }
 
   parsePriority(prio: String) {
@@ -72,7 +73,8 @@ export class EditTaskComponent implements OnInit {
       title: this.title,
       due: this.due,
       status: 'running',
-      priority: this.priority
+      priority: this.priority,
+      description: this.textdata
       
     };
 

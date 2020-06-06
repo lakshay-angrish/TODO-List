@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
 
   constructor(private router: Router) { }
 
