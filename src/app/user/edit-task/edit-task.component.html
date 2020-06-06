@@ -20,7 +20,7 @@
           </span>
       </div>
       <div *ngIf="titleVal.errors?.minlength">
-        <span style="color: red"> title must contain at lease 2 letters </span>
+        <span style="color: red"> title must contain at least 2 letters </span>
     </div> 
       <div id="cen">
           <button id="subButton" [disabled]="titleVal.errors?.minlength || titleVal.invalid" mat-button mat-dialog-close (click)="editTask()">
