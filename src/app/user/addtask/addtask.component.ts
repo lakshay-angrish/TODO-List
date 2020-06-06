@@ -14,8 +14,8 @@ interface Label {
 })
 
 export class AddtaskComponent implements OnInit {
-  title: string;
-  due: Date;
+  title = null;
+  due = new Date();
   minDate: Date;
   pri:string = "low";
   selectedValue: String;
