@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 .head {
     margin-top: 15px;
     font-family: Montserrat, 'Courier New', Courier, monospace;
@@ -30,7 +30,7 @@
     height : auto;
     width: auto;
     border-radius: 5px;
-    background: #305F72;
+    background: #FFFF80;
     &:hover {
         transition: 0.2s;
         box-shadow: 7px 5px rgb(180, 175, 175);
@@ -43,10 +43,11 @@
     flex-grow: 1;
     flex-basis: 0;
     margin: 0.5em 1em 0.1em 0.5em;//TRBL
-    color: white;
+    color: black;
 }
 .title {
-    font-family: 'Permanent Marker', sans-serif;
+    font-family: 'Indie Flower', sans-serif;
+    font-weight: bold;
     font-size: 1.3em;
     letter-spacing: 1.5px;
     line-height: 1.2;
