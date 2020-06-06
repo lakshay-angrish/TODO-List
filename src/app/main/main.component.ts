@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
+  isVisible: boolean;
   constructor() {}
 
   ngOnInit(): void {
+    this.isVisible = false;
   }
 
 }

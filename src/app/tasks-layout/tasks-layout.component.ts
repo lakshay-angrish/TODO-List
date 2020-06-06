@@ -21,6 +21,7 @@ export class TasksLayoutComponent implements OnInit {
   H3: string;
   H4: string;
   isVisible: boolean = false;
+  isVisible2: boolean = false;
   
 
   @Input() heading: Text;
@@ -53,6 +54,7 @@ export class TasksLayoutComponent implements OnInit {
          this.H2 = 'Upcoming';
          this.H3 = 'Completed';
          this.isVisible = false;
+         this.isVisible2 = true;
 
         for (const task of response) {
           const date = new Date(task.due);
@@ -82,13 +84,8 @@ export class TasksLayoutComponent implements OnInit {
   }else{
     console.log(this.searchResults.length);
     this.H4 = 'Search Results';
-      this.H1 = '';
-      this.H2 = '';
-      this.H3 = '';
-      this.tasksToday = [];
-      this.tasksUpcoming = [];
-      this.tasksCompleted = [];
       this.isVisible = true;
+      this.isVisible2 = false;
       for (const task of this.searchResults) {
         task.due = new Date(task.due).toDateString();
       }
