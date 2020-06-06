@@ -1,4 +1,4 @@
-<div id="main">
+<!-- <div id="main">
 <div id="top-row">
     <H2>
         {{title}}
@@ -18,4 +18,22 @@
 <span id="desc" style="white-space: pre-line">
     {{textdata}}
 </span>
-</div>
+</div> -->
+<mat-card class="card">
+    <mat-card-title>
+        {{title}}
+    </mat-card-title>
+    <mat-card-subtitle style="color: red;" id="due">
+        due: {{due}}
+    </mat-card-subtitle>
+</mat-card>
+<mat-card>
+    <mat-card-subtitle>
+        {{selectedValue}}
+    </mat-card-subtitle>
+    <mat-card-content style="white-space: pre-line">
+        {{textdata}}
+    </mat-card-content>
+</mat-card>
+
+

@@ -1,32 +1,10 @@
-#main{
-    width: 400px;
+.card{
+    display: flex;
+    justify-content: space-between;
 }
-h2{
-    margin-left: 10px;
-    margin-right: 10px;
-    display: inline-block;
+mat-card-title{
+    margin-right: 50px;
 }
-h4{
-    display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-#label{
-    display: inline-block;
-}
-#pri{
-    float: right;
-}
-#top-row{
-    display: block;
-    width: 400px;
-}
-#second-row{
-    display: block;
-}
-#desc{
-    display: block;
-}
-#date{
-    float: right;
+#due{
+    margin-top: 1px;
 }

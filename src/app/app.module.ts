@@ -14,6 +14,8 @@ import { TasksLayoutComponent } from './tasks-layout/tasks-layout.component';
 import { EditTaskComponent } from './user/edit-task/edit-task.component';
 import { AuthComponent } from './user/auth/auth/auth.component';
 import { TaskinfoComponent } from './user/taskinfo/taskinfo.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { TaskinfoComponent } from './user/taskinfo/taskinfo.component';
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
