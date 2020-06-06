@@ -81,7 +81,9 @@ var userSchema = new mongoose.Schema({
 var User = new mongoose.model('User', userSchema);
 
 app.get('/allTasks', (req, res) => {
-  Task.find((error, data) => {
+  Task.find({
+    userID: req.query.userID
+  }, (error, data) => {
     if (error) {
       console.log(error);
       res.send(error);
@@ -96,6 +98,7 @@ app.post('/newTask', (req, res) => {
   var newTask = new Task({
     title: req.body.title,
     due: req.body.due,
+    userID: req.body.userID,
     status: req.body.status,
     priority: req.body.priority,
     labels: req.body.labels
@@ -163,7 +166,10 @@ app.post('/searchTask',(req,res) => {
   var noMatch = null;
 
     const regex = new RegExp(escapeRegex(req.body.text), 'gi');
-    Task.find({title: regex},function(err, data){
+    Task.find({
+      title: regex,
+      userID: req.body.userID
+    }, (err, data) => {
       if(err){
         console.log(err);
       }else{
@@ -173,7 +179,7 @@ app.post('/searchTask',(req,res) => {
     })
   });
 
-app.post('/signup', async (req, res) => {
+app.post('/signUp', async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     console.log(hashedPassword);
@@ -199,17 +205,23 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-app.post('/login', async (req, res) => {
+app.post('/logIn', async (req, res) => {
   try {
     const user = await User.findOne({
       email: req.body.email
     });
     if (!user) {
-      res.send('User not found');
+      console.log('User not found');
+      res.status(500).send('User not found');
     } else {
       const match = await bcrypt.compare(req.body.password, user.password);
-      if (match)  res.send('User Authenticated.');
-      else  res.send('User not found.');
+      if (match) {
+        res.send(user.firstName);
+        console.log(user.firstName);
+      } else {
+        res.status(500).send('User not found.');
+        console.log('User not found');
+      }
     }
 
   } catch {

@@ -12,7 +12,6 @@ import {TaskinfoComponent} from '../user/taskinfo/taskinfo.component'
   styleUrls: ['./tasks-layout.component.scss']
 })
 export class TasksLayoutComponent implements OnInit {
-
   tasksToday: any[] = [];
   tasksUpcoming: any[] = [];
   tasksCompleted: any[] = [];
@@ -25,19 +24,17 @@ export class TasksLayoutComponent implements OnInit {
   isVisibleToday: boolean = false;
   isVisibleUpcoming: boolean = false;
   isVisibleCompleted: boolean = false;
-  
 
   @Input() heading: Text;
   color1 = '#8bd136';
   color2 = '#33e0f1';
-  
 
-  constructor(private data: SearchService,private http: HttpClient, private dialogBox: MatDialog, private reload: ReloadService) {
 
-   }
+  constructor(private data: SearchService, private http: HttpClient, private dialogBox: MatDialog, private reload: ReloadService) { }
 
 
   ngOnInit(): void {
+    this.userID = sessionStorage.getItem('email');
     this.data.currentMessage.subscribe(searchResults => this.searchResults = searchResults);
     this.reload.action.subscribe(async (op) => {
       await this.getAllTasks();
@@ -45,11 +42,8 @@ export class TasksLayoutComponent implements OnInit {
   }
 
   getAllTasks() {
-
-    if(this.searchResults.length == 0){
-
-    this.http.get('http://localhost:3000/allTasks', { responseType: 'json' }).subscribe(
-      (response: any[]) => {
+    if (this.searchResults.length === 0) {
+      this.http.get('http://localhost:3000/allTasks?userID=' + this.userID, { responseType: 'json' }).subscribe((response: any[]) => {
         this.tasksToday = [];
         this.tasksUpcoming = [];
         this.tasksCompleted = [];
@@ -121,10 +115,11 @@ export class TasksLayoutComponent implements OnInit {
       await this.getAllTasks();
     });
   }
-  doneTask(id: String) {
-    var isTrue = confirm('click OK to confirm');
+
+  doneTask(ID: string) {
+    const isTrue = confirm('click OK to confirm');
     if (isTrue) {
-      this.http.put('http://localhost:3000/updateStatus', {id: id}, {responseType: 'text'}).subscribe(
+      this.http.put('http://localhost:3000/updateStatus', {id: ID}, {responseType: 'text'}).subscribe(
         (res) => {
           console.log(res);
           this.getAllTasks();
@@ -132,9 +127,10 @@ export class TasksLayoutComponent implements OnInit {
       );
     }
   }
-  goBack(){
-    this.H4 = "";
-    this.searchResults=[];
+
+  goBack() {
+    this.H4 = '';
+    this.searchResults = [];
     this.reload.sendAction(true);
   }
   cardClick(task){

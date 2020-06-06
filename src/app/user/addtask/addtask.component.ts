@@ -32,28 +32,30 @@ export class AddtaskComponent implements OnInit {
   constructor(private http: HttpClient) {
     this.minDate = new Date(Date.now());
   }
-  ngOnInit(): void {
-  }
+
+  ngOnInit(): void {}
+
   formatLabel(val: number) {
-    switch(val) {
-      case 1: return "low";
-      case 2: return "med";
-      case 3: return "high";
+    switch (val) {
+      case 1: return 'low';
+      case 2: return 'med';
+      case 3: return 'high';
     }
   }
   onChange(value: Event) {
-    if (value["value"] == 1) {
-      this.pri = "low";
-    } else if (value["value"] == 2) {
-      this.pri = "medium";
+    if (value["value"] === 1) {
+      this.pri = 'low';
+    } else if (value["value"] === 2) {
+      this.pri = 'medium';
     } else {
-      this.pri = "high";
+      this.pri = 'high';
     }
   }
   addTask() {
     const args = {
       title: this.title,
       due: this.due,
+      userID: sessionStorage.getItem('email'),
       status: 'running',
       priority: this.pri,
       labels: [this.selectedValue],

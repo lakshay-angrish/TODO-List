@@ -40,10 +40,14 @@ export class EditTaskComponent implements OnInit {
     this.textdata = data.description;
   }
 
-  parsePriority(prio: String) {
-    if (prio == 'low') this.priorityVal = 1;
-    else if (prio == 'medium') this.priorityVal = 2;
-    else this.priorityVal = 3;
+  parsePriority(prio: string) {
+    if (prio === 'low') {
+      this.priorityVal = 1;
+    } else if (prio === 'medium') {
+      this.priorityVal = 2;
+    } else {
+      this.priorityVal = 3;
+    }
   }
 
   ngOnInit(): void {
@@ -57,9 +61,9 @@ export class EditTaskComponent implements OnInit {
     }
   }
   onChange(value: Event) {
-    if (value["value"] == 1) {
+    if (value["value"] === 1) {
       this.priority = 'low';
-    } else if (value["value"] == 2) {
+    } else if (value["value"] === 2) {
       this.priority = 'medium';
     } else {
       this.priority = 'high';
@@ -72,6 +76,7 @@ export class EditTaskComponent implements OnInit {
       labels: [this.selectedValue],
       title: this.title,
       due: this.due,
+      userID: sessionStorage.getItem('email'),
       status: 'running',
       priority: this.priority,
       description: this.textdata

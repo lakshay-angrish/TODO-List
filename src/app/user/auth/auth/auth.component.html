@@ -19,7 +19,7 @@
                     </mat-label>
                     <input name="title" alt="pass" matInput type="text" required [(ngModel)]="password"/>
                 </mat-form-field> <br>
-                <button id="auth-button" mat-button (click)="submitLogin()">
+                <button id="auth-button" mat-button (click)="logIn()">
                     Submit
                 </button>
             </mat-tab>
@@ -53,7 +53,7 @@
                     </mat-label>
                     <input name="title" alt="pass" matInput type="text" required [(ngModel)]="password"/>
                 </mat-form-field> <br>
-                <button id="auth-button" mat-button>
+                <button id="auth-button" mat-button (click)="signUp()">
                     Submit
                 </button>
             </mat-tab>
