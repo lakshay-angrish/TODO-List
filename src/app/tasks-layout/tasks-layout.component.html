@@ -2,8 +2,8 @@
     <h2>{{ heading }}</h2>
 </div>
 <div id="content">
-  <h1 class="head">{{ H1 }}</h1>
-  <div id="task_today">
+  <h1 class="head" *ngIf="isVisible2">{{ H1 }}</h1>
+  <div id="task_today" *ngIf="isVisible2">
       <div class="card" *ngFor="let task of tasksToday">
           <div class="container" >
             <span class="title">{{ task.title | titlecase }}</span>
@@ -20,8 +20,8 @@
           </div>
       </div>
   </div>
-  <h1 class="head">{{ H2 }}</h1>
-  <div id="task_upcoming">
+  <h1 class="head" *ngIf="isVisible2">{{ H2 }}</h1>
+  <div id="task_upcoming" *ngIf="isVisible2">
     <div class="card" *ngFor="let task of tasksUpcoming">
         <div class="container" >
           <span class="title">{{ task.title | titlecase }}</span>
@@ -37,8 +37,8 @@
         </div>
     </div>
   </div>
-  <h1 class="head">{{ H3 }}</h1>
-  <div id="task_completed">
+  <h1 class="head" *ngIf="isVisible2">{{ H3 }}</h1>
+  <div id="task_completed" *ngIf="isVisible2">
       <div class="card" *ngFor="let task of tasksCompleted">
           <div class="container" >
             <span class="title">{{ task.title | titlecase }}</span>
