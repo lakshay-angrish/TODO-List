@@ -4,7 +4,6 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditTaskComponent } from '../user/edit-task/edit-task.component';
 import { ReloadService } from '../reload.service';
 import {SearchService} from '../search.service';
-import { convertActionBinding } from '@angular/compiler/src/compiler_util/expression_converter';
 
 @Component({
   selector: 'app-tasks-layout',
