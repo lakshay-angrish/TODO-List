@@ -5,7 +5,7 @@
           <mat-label>
               type a task...
           </mat-label>
-          <input name="title" alt="add" matInput type="text" [(ngModel)]="title" required />
+          <input name="title" alt="add" matInput minlength="2" #titleVal="ngModel" type="text" [(ngModel)]="title" required />
       </mat-form-field>
       <mat-form-field matTooltip="choose a date">
           <mat-label>add a due date</mat-label>
@@ -19,8 +19,11 @@
               </mat-slider>
           </span>
       </div>
+      <div *ngIf="titleVal.errors?.minlength">
+        <span style="color: red"> title must contain at least 2 letters </span>
+    </div> 
       <div id="cen">
-          <button id="subButton" mat-button mat-dialog-close (click)="editTask()">
+          <button id="subButton" [disabled]="titleVal.errors?.minlength || titleVal.invalid" mat-button mat-dialog-close (click)="editTask()">
             Submit
           </button>
           <button id="deleteButton" mat-button mat-dialog-close (click)="deleteTask()">
