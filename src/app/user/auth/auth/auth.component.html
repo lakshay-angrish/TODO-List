@@ -1,0 +1,62 @@
+<div class="login-background"><img src="../../../../assets/images/login-background.svg" alt="login"></div>
+
+<div class="login-wrapper">
+    <div class="wrapper-child">
+        <mat-tab-group mat-align-tabs="start">
+            <mat-tab label="Login">
+                <br>
+                <mat-form-field hideRequiredMarker color="primary" formnovalidate name="email" appearance="outline"
+                    [style.width.ex]="30">
+                    <mat-label>
+                        Email
+                    </mat-label>
+                    <input name="title" alt="email" matInput type="text" required />
+                </mat-form-field>
+                <mat-form-field hideRequiredMarker formnovalidate color="primary" name="password" appearance="outline"
+                    [style.width.ex]="30">
+                    <mat-label>
+                        Password
+                    </mat-label>
+                    <input name="title" alt="pass" matInput type="text" required />
+                </mat-form-field> <br>
+                <button id="auth-button" mat-button (click)="submitLogin()">
+                    Submit
+                </button>
+            </mat-tab>
+            <mat-tab label="Signup">
+                <br>
+                <mat-form-field hideRequiredMarker color="primary" formnovalidate name="firstname" appearance="outline"
+                    [style.width.ex]="30">
+                    <mat-label>
+                        First name
+                    </mat-label>
+                    <input name="title" alt="email" matInput type="text" required />
+                </mat-form-field>
+                <mat-form-field hideRequiredMarker color="primary" formnovalidate name="last-name" appearance="outline"
+                    [style.width.ex]="30">
+                    <mat-label>
+                        Last name
+                    </mat-label>
+                    <input name="title" alt="email" matInput type="text" required />
+                </mat-form-field>
+                <mat-form-field hideRequiredMarker color="primary" formnovalidate name="email" appearance="outline"
+                    [style.width.ex]="30">
+                    <mat-label>
+                        Email
+                    </mat-label>
+                    <input name="title" alt="email" matInput type="text" required />
+                </mat-form-field>
+                <mat-form-field hideRequiredMarker formnovalidate color="primary" name="password" appearance="outline"
+                    [style.width.ex]="30">
+                    <mat-label>
+                        Password
+                    </mat-label>
+                    <input name="title" alt="pass" matInput type="text" required />
+                </mat-form-field> <br>
+                <button id="auth-button" mat-button>
+                    Submit
+                </button>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>
