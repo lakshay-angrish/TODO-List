@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-auth',
@@ -12,12 +13,43 @@ export class AuthComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
-  }
-  submitLogin() {
-    this.router.navigate(['/main']);
+    if (sessionStorage.getItem('email') !== null) {
+      this.router.navigate(['/main']);
+    }
   }
 
+  logIn() {
+    const args = {
+      email: this.email,
+      password: this.password
+    };
+
+    this.http.post('http://localhost:3000/logIn', args, { responseType: 'text' }).subscribe((response) => {
+      alert(response);
+      sessionStorage.setItem('email', this.email);
+      this.router.navigate(['/main']);
+    }, (error) => {
+      alert(error);
+    });
+  }
+
+  signUp() {
+    const args = {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      password: this.password
+    };
+
+    this.http.post('http://localhost:3000/signUp', args, { responseType: 'text' }).subscribe((response) => {
+      alert(response);
+      sessionStorage.setItem('email', this.email);
+      this.router.navigate(['/main']);
+    }, (error) => {
+      alert(error);
+    });
+  }
 }

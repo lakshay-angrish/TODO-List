@@ -172,7 +172,7 @@ app.post('/searchTask',(req,res) => {
     })
   });
 
-app.post('/signup', async (req, res) => {
+app.post('/signUp', async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     console.log(hashedPassword);
@@ -198,17 +198,23 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-app.post('/login', async (req, res) => {
+app.post('/logIn', async (req, res) => {
   try {
     const user = await User.findOne({
       email: req.body.email
     });
     if (!user) {
+      console.log('User not found');
       res.send('User not found');
     } else {
       const match = await bcrypt.compare(req.body.password, user.password);
-      if (match)  res.send('User Authenticated.');
-      else  res.send('User not found.');
+      if (match) {
+        res.send('User Authenticated.');
+        console.log('User Authenticated.');
+      } else {
+        res.send('User not found.');
+        console.log('User not found');
+      }
     }
 
   } catch {
