@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-
 interface Label {
   value: string;
   viewValue: string;
-} 
+}
 
 @Component({
   selector: 'app-addtask',
@@ -17,9 +16,9 @@ export class AddtaskComponent implements OnInit {
   title = null;
   due = new Date();
   minDate: Date;
-  pri:string = "low";
-  selectedValue: String;
-  textdata: String;
+  pri = 'low';
+  selectedValue = 'others';
+  textData: string;
 
 
   labels: Label[] = [
@@ -59,9 +58,9 @@ export class AddtaskComponent implements OnInit {
       status: 'running',
       priority: this.pri,
       labels: [this.selectedValue],
-      description: this.textdata
+      description: this.textData
     };
-    console.log(this.textdata)
+    console.log(this.textData);
 
     this.http.post('http://localhost:3000/newTask', args, { responseType: 'text'}).subscribe((response) => {
       alert(response);

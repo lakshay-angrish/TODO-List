@@ -98,6 +98,7 @@ app.post('/newTask', (req, res) => {
   var newTask = new Task({
     title: req.body.title,
     due: req.body.due,
+    description: req.body.description,
     userID: req.body.userID,
     status: req.body.status,
     priority: req.body.priority,
