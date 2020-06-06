@@ -42,6 +42,7 @@ var taskSchema = new mongoose.Schema({
     minlength: 1
   },
   due: Date,
+  description: String,
   status: {
     type: String,
     enum: ['running', 'expired', 'finished']
@@ -53,7 +54,8 @@ var taskSchema = new mongoose.Schema({
   labels: {
     type: [String],
     lowercase: true
-  }
+  },
+  userID: String  //every task would have a user association
 }, {
   versionKey: false
 });
