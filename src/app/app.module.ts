@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -15,7 +14,8 @@ import { EditTaskComponent } from './user/edit-task/edit-task.component';
 import { AuthComponent } from './user/auth/auth/auth.component';
 import { TaskinfoComponent } from './user/taskinfo/taskinfo.component';
 import {MatCardModule} from '@angular/material/card';
-import {MatGridListModule} from '@angular/material/grid-list';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatCheckboxModule} from '@angular/material/checkbox'; 
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     FormsModule,
     HttpClientModule,
     MatCardModule,
-    MatGridListModule
+    MatMenuModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
