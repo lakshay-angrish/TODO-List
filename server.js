@@ -205,14 +205,14 @@ app.post('/logIn', async (req, res) => {
     });
     if (!user) {
       console.log('User not found');
-      res.send('User not found');
+      res.status(500).send('User not found');
     } else {
       const match = await bcrypt.compare(req.body.password, user.password);
       if (match) {
         res.send('User Authenticated.');
         console.log('User Authenticated.');
       } else {
-        res.send('User not found.');
+        res.status(500).send('User not found.');
         console.log('User not found');
       }
     }

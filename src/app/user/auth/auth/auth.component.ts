@@ -32,7 +32,8 @@ export class AuthComponent implements OnInit {
       sessionStorage.setItem('email', this.email);
       this.router.navigate(['/main']);
     }, (error) => {
-      alert(error);
+      console.log(error);
+      alert('Server Error');
     });
   }
 
@@ -49,7 +50,8 @@ export class AuthComponent implements OnInit {
       sessionStorage.setItem('email', this.email);
       this.router.navigate(['/main']);
     }, (error) => {
-      alert(error);
+      console.log(error);
+      alert('Server Error');
     });
   }
 }
