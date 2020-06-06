@@ -36,14 +36,14 @@ export class HeaderComponent implements OnInit {
 
         for (const task of response) {
           this.searchData.push(task);
-          console.log(task.title);
         }
+        this.data.changeMessage(this.searchData)
       },
       (error) => {
         alert(error);
       }
     );
-    this.data.changeMessage(this.searchData)
+    
 
   }
 

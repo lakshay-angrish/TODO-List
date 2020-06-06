@@ -35,14 +35,13 @@ export class TasksLayoutComponent implements OnInit {
   ngOnInit(): void {
     this.data.currentMessage.subscribe(searchResults => this.searchResults = searchResults);
     this.reload.action.subscribe((op) => {
-        console.log(this.searchResults.length);
         this.getAllTasks();
     });
   }
 
   getAllTasks() {
 
-    // if(this.searchResults.length == 0){
+    if(this.searchResults.length == 0){
 
     this.http.get('http://localhost:3000/allTasks', { responseType: 'json' }).subscribe(
       (response: any[]) => {
@@ -78,16 +77,16 @@ export class TasksLayoutComponent implements OnInit {
           task.due = new Date(task.due).toDateString();
         }
     });
-  // }else{
-  //   console.log(this.searchResults.length);
-  //   this.H4 = 'Search Results';
-  //     this.H1 = '';
-  //     this.H2 = '';
-  //     this.H3 = '';
-  //     this.tasksToday = [];
-  //     this.tasksUpcoming = [];
-  //     this.tasksCompleted = []
-  // }
+  }else{
+    console.log(this.searchResults.length);
+    this.H4 = 'Search Results';
+      this.H1 = '';
+      this.H2 = '';
+      this.H3 = '';
+      this.tasksToday = [];
+      this.tasksUpcoming = [];
+      this.tasksCompleted = []
+  }
   }
 
 

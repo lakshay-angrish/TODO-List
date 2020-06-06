@@ -149,10 +149,6 @@ app.post('/searchTask',(req,res) => {
       if(err){
         console.log(err);
       }else{
-        if(data.length < 1) {
-          noMatch = "No campgrounds match that query, please try again.";
-      }
-        // res.render("",{Task:data, noMatch: noMatch});
         console.log(data);
         res.send(data);
       }
