@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./addtask.component.scss']
 })
 export class AddtaskComponent implements OnInit {
-  title: string;
-  due: Date;
+  title = null;
+  due = new Date();
   selectedTag: String;
   minDate: Date;
   pri = "low";
