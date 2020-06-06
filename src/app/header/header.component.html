@@ -6,11 +6,11 @@
             <mat-label>
                 Search the task..
             </mat-label>
-            <input alt="add" matInput type="text" required />
+            <input #textin alt="add" (keyup.enter)="searchText(textin.value)" matInput type="text" required />
         </mat-form-field>
     </form>
     <span>
-        <button mat-button matTooltip="click to search">
+        <button mat-button (click) = "searchText(textin.value)" matTooltip="click to search">
             <mat-icon>search</mat-icon>
         </button>
         <button matTooltip="Add new task" mat-button (click)="openAddNewTaskDialog()"><mat-icon>add</mat-icon></button>
