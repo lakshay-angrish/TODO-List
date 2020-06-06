@@ -1,17 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+
+interface Label {
+  value: string;
+  viewValue: string;
+} 
+
 @Component({
   selector: 'app-addtask',
   templateUrl: './addtask.component.html',
   styleUrls: ['./addtask.component.scss']
 })
+
 export class AddtaskComponent implements OnInit {
   title = null;
   due = new Date();
-  selectedTag: String;
   minDate: Date;
-  pri = "low";
+  pri:string = "low";
+  selectedValue: String;
+  textdata: String;
+
+
+  labels: Label[] = [
+    {value: 'personal', viewValue: 'Personal'},
+    {value: 'work', viewValue: 'Work'},
+    {value: 'shopping', viewValue: 'Shopping'},
+    {value: 'others', viewValue: 'Others'}
+  ];
 
   constructor(private http: HttpClient) {
     this.minDate = new Date(Date.now());
@@ -40,8 +56,10 @@ export class AddtaskComponent implements OnInit {
       due: this.due,
       status: 'running',
       priority: this.pri,
-      labels: [this.selectedTag]
+      labels: [this.selectedValue],
+      description: this.textdata
     };
+    console.log(this.textdata)
 
     this.http.post('http://localhost:3000/newTask', args, { responseType: 'text'}).subscribe((response) => {
       alert(response);
