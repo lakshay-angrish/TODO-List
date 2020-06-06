@@ -2,6 +2,11 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 
+interface Label {
+  value: string;
+  viewValue: string;
+} 
+
 @Component({
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
@@ -14,6 +19,15 @@ export class EditTaskComponent implements OnInit {
   minDate: Date;
   priority: string;
   priorityVal: number;
+  selectedValue: String;
+  textdata: String;
+
+  labels: Label[] = [
+    {value: 'personal', viewValue: 'Personal'},
+    {value: 'work', viewValue: 'Work'},
+    {value: 'shopping', viewValue: 'Shopping'},
+    {value: 'others', viewValue: 'Others'}
+  ];
 
   constructor(private http: HttpClient, private dialogRef: MatDialogRef<EditTaskComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.id = data._id;
@@ -22,6 +36,8 @@ export class EditTaskComponent implements OnInit {
     this.priority = data.priority;
     this.minDate = new Date(Date.now());
     this.parsePriority(this.priority);
+    this.selectedValue = data.labels[0];
+    this.textdata = data.description;
   }
 
   parsePriority(prio: string) {
@@ -57,12 +73,14 @@ export class EditTaskComponent implements OnInit {
   editTask() {
     const args = {
       _id: this.id,
-      labels: [],
+      labels: [this.selectedValue],
       title: this.title,
       due: this.due,
       userID: sessionStorage.getItem('email'),
       status: 'running',
-      priority: this.priority
+      priority: this.priority,
+      description: this.textdata
+      
     };
 
     this.http.post('http://localhost:3000/editTask', args, { responseType: 'text'}).subscribe((response) => {

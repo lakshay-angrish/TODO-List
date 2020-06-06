@@ -5,11 +5,11 @@
             <mat-label>
                 type a task...
             </mat-label>
-            <input name="title" alt="add" matInput type="text" [(ngModel)]="title" required />
+            <input name="title" alt="add" matInput type="text" #titleVal="ngModel" [(ngModel)]="title" minlength="2" required />
         </mat-form-field>
         <mat-form-field matTooltip="choose a date">
             <mat-label>add a due date</mat-label>
-            <input name="due" placeholder="mm/dd/yyyy" [min]="minDate" matInput [matDatepicker]="myDatePicker" [(ngModel)]="due" />
+            <input name="due" placeholder="mm/dd/yyyy" [min]="minDate" matInput [matDatepicker]="myDatePicker" value="due" [(ngModel)]="due" />
             <mat-datepicker-toggle matSuffix [for]="myDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #myDatePicker></mat-datepicker>
         </mat-form-field>
@@ -36,8 +36,23 @@
                 </mat-slider>
             </span>
         </div>
+        <mat-form-field>
+            <mat-label>Select a label</mat-label>
+            <mat-select [(ngModel)]="selectedValue" name="lab" required>
+                <mat-option *ngFor="let label of labels" [value]="label.value">
+                    {{label.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field  >
+            <mat-label>Add Description</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..." [(ngModel)]="textdata" name="des"></textarea>
+        </mat-form-field>
+        <div *ngIf="titleVal.errors?.minlength">
+            <span style="color: red"> title must contain at lease 2 letters </span>
+        </div> 
         <div id="cen">
-            <button id="subButton" mat-button mat-dialog-close (click)="addTask()">
+            <button id="subButton" [disabled]="titleVal.errors?.minlength || titleVal.invalid" mat-button mat-dialog-close (click)="addTask()">
                 Submit
             </button>
         </div>
