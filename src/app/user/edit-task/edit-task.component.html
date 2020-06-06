@@ -19,6 +19,14 @@
               </mat-slider>
           </span>
       </div>
+      <mat-form-field>
+        <mat-label>Select a label</mat-label>
+        <mat-select [(ngModel)]="selectedValue" name="food" >
+            <mat-option *ngFor="let label of labels" [value]="label.value">
+                {{label.viewValue}}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
       <div id="cen">
           <button id="subButton" mat-button mat-dialog-close (click)="editTask()">
             Submit

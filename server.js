@@ -52,7 +52,8 @@ var taskSchema = new mongoose.Schema({
   },
   labels: {
     type: [String],
-    lowercase: true
+    lowercase: true,
+    enum: ['personal', 'work', 'shopping','others']
   }
 }, {
   versionKey: false
