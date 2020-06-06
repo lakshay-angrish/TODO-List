@@ -1,21 +1,18 @@
-<div id="main">
-<div id="top-row">
-    <H2>
+<mat-card class="card">
+    <mat-card-title>
         {{title}}
-    </H2>
-    <h4 id="date">
-        {{due}}
-    </h4>
-</div>
-<div id="second-row">
-    <h4 id="label">
+    </mat-card-title>
+    <mat-card-subtitle style="color: red;" id="due">
+        Due: {{due}}
+    </mat-card-subtitle>
+</mat-card>
+<mat-card>
+    <mat-card-subtitle>
         {{selectedValue}}
-    </h4>
-    <h4 id="pri">
-        Priority: {{priority}}
-    </h4>
-</div>
-<span id="desc" style="white-space: pre-line">
-    {{textData}}
-</span>
-</div>
+    </mat-card-subtitle>
+    <mat-card-content style="white-space: pre-line">
+        {{textData}}
+    </mat-card-content>
+</mat-card>
+
+

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -14,6 +13,9 @@ import { TasksLayoutComponent } from './tasks-layout/tasks-layout.component';
 import { EditTaskComponent } from './user/edit-task/edit-task.component';
 import { AuthComponent } from './user/auth/auth/auth.component';
 import { TaskinfoComponent } from './user/taskinfo/taskinfo.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatCheckboxModule} from '@angular/material/checkbox'; 
 
 @NgModule({
   declarations: [
@@ -33,7 +35,10 @@ import { TaskinfoComponent } from './user/taskinfo/taskinfo.component';
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    MatMenuModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
