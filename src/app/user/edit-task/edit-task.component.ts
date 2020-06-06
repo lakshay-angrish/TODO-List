@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 interface Label {
   value: string;
   viewValue: string;
-} 
+}
 
 @Component({
   selector: 'app-edit-task',
@@ -20,7 +20,7 @@ export class EditTaskComponent implements OnInit {
   priority: string;
   priorityVal: number;
   selectedValue: String;
-  textdata: String;
+  textData: String;
 
   labels: Label[] = [
     {value: 'personal', viewValue: 'Personal'},
@@ -37,7 +37,7 @@ export class EditTaskComponent implements OnInit {
     this.minDate = new Date(Date.now());
     this.parsePriority(this.priority);
     this.selectedValue = data.labels[0];
-    this.textdata = data.description;
+    this.textData = data.description;
   }
 
   parsePriority(prio: string) {
@@ -79,8 +79,8 @@ export class EditTaskComponent implements OnInit {
       userID: sessionStorage.getItem('email'),
       status: 'running',
       priority: this.priority,
-      description: this.textdata
-      
+      description: this.textData
+
     };
 
     this.http.post('http://localhost:3000/editTask', args, { responseType: 'text'}).subscribe((response) => {

@@ -12,15 +12,15 @@ export class TaskinfoComponent implements OnInit {
   due: string;
   priority: string;
   selectedValue: String;
-  textdata: String;
+  textData: String;
 
   constructor(private dialogRef: MatDialogRef<TaskinfoComponent>, @Inject(MAT_DIALOG_DATA) data) {
-    
+
     this.title = data.title;
     this.due = new Date(data.due).toDateString();
     this.priority = data.priority;
     this.selectedValue = data.labels[0];
-    this.textdata = data.description;
+    this.textData = data.description;
     console.log(data.priority);
    }
 
