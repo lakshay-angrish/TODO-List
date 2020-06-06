@@ -29,11 +29,11 @@
       </mat-form-field>
       <mat-form-field  >
         <mat-label>Add Description</mat-label>
-        <textarea matInput placeholder="Ex. It makes me feel..." [(ngModel)]="textdata" name="des"></textarea>
+        <textarea matInput placeholder="Ex. It makes me feel..." [(ngModel)]="textData" name="des"></textarea>
     </mat-form-field>
       <div *ngIf="titleVal.errors?.minlength">
         <span style="color: red"> title must contain at least 2 letters </span>
-    </div> 
+    </div>
       <div id="cen">
           <button id="subButton" [disabled]="titleVal.errors?.minlength || titleVal.invalid" mat-button mat-dialog-close (click)="editTask()">
             Submit
