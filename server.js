@@ -6,6 +6,7 @@ const cors = require('cors');
 var bodyparser = require("body-parser");
 var http = require('http').createServer(app);
 const ObjectID = require('mongodb').ObjectID;
+const bcrypt = require('bcryptjs');
 
 app.use(bodyparser.urlencoded( { extended: true } ));
 app.use(bodyparser.json());
@@ -61,6 +62,20 @@ var taskSchema = new mongoose.Schema({
 taskSchema.index({title: 1, due: 1}, { unique: true });
 
 var Task = new mongoose.model('Task', taskSchema);
+
+var userSchema = new mongoose.Schema({
+	firstName: String,
+	lastName: String,
+	email: {
+		type: String,
+		unique: true
+	},
+	password: String
+}, {
+  versionKey: false
+});
+
+var User = new mongoose.model('User', userSchema);
 
 app.get('/allTasks', (req, res) => {
   Task.find((error, data) => {
@@ -153,6 +168,50 @@ app.post('/searchTask',(req,res) => {
         res.send(data);
       }
     })
+  });
+
+app.post('/signup', async (req, res) => {
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    console.log(hashedPassword);
+
+    var newUser = new User({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: hashedPassword
+    });
+
+    newUser.save((error) => {
+      if (error) {
+        console.log(error);
+        res.send('Error while adding User. Try again.');
+      } else {
+        console.log('User Added!');
+        res.send('User Added!');
+      }
+    });
+  } catch {
+    res.status(500).send('Server Error!');
+  }
+});
+
+app.post('/login', async (req, res) => {
+  try {
+    const user = await User.findOne({
+      email: req.body.email
+    });
+    if (!user) {
+      res.send('User not found');
+    } else {
+      const match = await bcrypt.compare(req.body.password, user.password);
+      if (match)  res.send('User Authenticated.');
+      else  res.send('User not found.');
+    }
+
+  } catch {
+    res.status(500).send('Server Error!');
+  }
 });
 
 http.listen(3000, () => {
@@ -161,4 +220,4 @@ http.listen(3000, () => {
 
 function escapeRegex(text){
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-}
+  }
