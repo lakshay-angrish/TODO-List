@@ -11,7 +11,7 @@ export class AddtaskComponent implements OnInit {
   due: Date;
   selectedTag: String;
   minDate: Date;
-  pri: String;
+  pri = "low";
 
   constructor(private http: HttpClient) {
     this.minDate = new Date(Date.now());
