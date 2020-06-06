@@ -25,8 +25,8 @@ export class TasksLayoutComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.reload.action.subscribe((op) => {
-      this.getAllTasks();
+    this.reload.action.subscribe(async (op) => {
+      await this.getAllTasks();
     });
   }
 
@@ -70,8 +70,8 @@ export class TasksLayoutComponent implements OnInit {
     dialogConfig.data = task;
 
     const dialogRef = this.dialogBox.open(EditTaskComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(() => {
-      this.getAllTasks();
+    dialogRef.afterClosed().subscribe(async () => {
+      await this.getAllTasks();
     });
   }
   doneTask(id: String) {
