@@ -20,6 +20,8 @@ export class TasksLayoutComponent implements OnInit {
   H2: string;
   H3: string;
   H4: string;
+  isVisible: boolean = false;
+  
 
   @Input() heading: Text;
   color1 = '#8bd136';
@@ -50,6 +52,7 @@ export class TasksLayoutComponent implements OnInit {
          this.H1 = 'Due Today';
          this.H2 = 'Upcoming';
          this.H3 = 'Completed';
+         this.isVisible = false;
 
         for (const task of response) {
           const date = new Date(task.due);
@@ -85,6 +88,7 @@ export class TasksLayoutComponent implements OnInit {
       this.tasksToday = [];
       this.tasksUpcoming = [];
       this.tasksCompleted = [];
+      this.isVisible = true;
       for (const task of this.searchResults) {
         task.due = new Date(task.due).toDateString();
       }
@@ -112,5 +116,10 @@ export class TasksLayoutComponent implements OnInit {
         }
       );
     }
+  }
+  goBack(){
+    this.H4 = "";
+    this.searchResults=[];
+    this.reload.sendAction(true);
   }
 }
