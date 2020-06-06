@@ -24,6 +24,7 @@ export class TasksLayoutComponent implements OnInit {
   isVisibleToday: boolean = false;
   isVisibleUpcoming: boolean = false;
   isVisibleCompleted: boolean = false;
+  userID: string;
 
   @Input() heading: Text;
   color1 = '#8bd136';
@@ -100,8 +101,8 @@ export class TasksLayoutComponent implements OnInit {
         task.due = new Date(task.due).toDateString();
       }
     }
-  
-  
+
+
   }
 
 
@@ -139,6 +140,6 @@ export class TasksLayoutComponent implements OnInit {
     dialogConfig.data = task;
 
     const dialogRef = this.dialogBox.open(TaskinfoComponent, dialogConfig);
-    
+
   }
 }
