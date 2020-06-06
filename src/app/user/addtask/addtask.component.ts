@@ -17,7 +17,7 @@ export class AddtaskComponent implements OnInit {
   title: string;
   due: Date;
   minDate: Date;
-  pri: "low";
+  pri:string = "low";
   selectedValue: String;
   textdata: String;
 
