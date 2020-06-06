@@ -28,9 +28,12 @@ export class HeaderComponent implements OnInit {
     })
   }
 
-  searchText(text: string){
-    
-    this.http.post('http://localhost:3000/searchTask', {text: text}, { responseType: 'json'}).subscribe(
+  searchText(query: string) {
+    const args = {
+      text: query,
+      userID: sessionStorage.getItem('email')
+    };
+    this.http.post('http://localhost:3000/searchTask', args, { responseType: 'json'}).subscribe(
       (response: any[]) => {
         this.searchData = [];
 
@@ -43,11 +46,5 @@ export class HeaderComponent implements OnInit {
         alert(error);
       }
     );
-    
-
   }
-
-
-  
 }
-

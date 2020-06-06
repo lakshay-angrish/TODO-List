@@ -11,7 +11,6 @@ import {SearchService} from '../search.service';
   styleUrls: ['./tasks-layout.component.scss']
 })
 export class TasksLayoutComponent implements OnInit {
-
   tasksToday: any[] = [];
   tasksUpcoming: any[] = [];
   tasksCompleted: any[] = [];
@@ -22,6 +21,7 @@ export class TasksLayoutComponent implements OnInit {
   H4: string;
   isVisible = false;
   isVisible2 = false;
+  userID: string;
 
 
   @Input() heading: Text;
@@ -33,6 +33,7 @@ export class TasksLayoutComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.userID = sessionStorage.getItem('email');
     this.data.currentMessage.subscribe(searchResults => this.searchResults = searchResults);
     this.reload.action.subscribe(async (op) => {
       await this.getAllTasks();
@@ -41,7 +42,7 @@ export class TasksLayoutComponent implements OnInit {
 
   getAllTasks() {
     if (this.searchResults.length === 0) {
-      this.http.get('http://localhost:3000/allTasks', { responseType: 'json' }).subscribe((response: any[]) => {
+      this.http.get('http://localhost:3000/allTasks?userID=' + this.userID, { responseType: 'json' }).subscribe((response: any[]) => {
         this.tasksToday = [];
         this.tasksUpcoming = [];
         this.tasksCompleted = [];

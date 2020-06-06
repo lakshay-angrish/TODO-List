@@ -80,7 +80,9 @@ var userSchema = new mongoose.Schema({
 var User = new mongoose.model('User', userSchema);
 
 app.get('/allTasks', (req, res) => {
-  Task.find((error, data) => {
+  Task.find({
+    userID: req.query.userID
+  }, (error, data) => {
     if (error) {
       console.log(error);
       res.send(error);
@@ -163,7 +165,10 @@ app.post('/searchTask',(req,res) => {
   var noMatch = null;
 
     const regex = new RegExp(escapeRegex(req.body.text), 'gi');
-    Task.find({title: regex},function(err, data){
+    Task.find({
+      title: regex,
+      userID: req.body.userID
+    }, (err, data) => {
       if(err){
         console.log(err);
       }else{
