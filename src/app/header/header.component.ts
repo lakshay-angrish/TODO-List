@@ -26,7 +26,15 @@ export class HeaderComponent implements OnInit {
   firstName = 'User';
   searchData: any[] = [];
   searchResults: any[] = [];
-  labels = new FormControl();
+  labels = new FormControl;
+  checkbox1: boolean = false;
+  checkbox2: boolean = false;
+  selectedPri: any[] = ['low'];
+  selectedLab: any[] = ['personal'];
+  Labarr: any[];
+  Priarr: any[];
+  isVisible: boolean = true;
+
 
   labelList: Label[] = [
     {value: 'personal', viewValue: 'Personal'},
@@ -56,9 +64,10 @@ export class HeaderComponent implements OnInit {
   }
 
   searchText(query: string) {
+    
     const args = {
       text: query,
-      userID: sessionStorage.getItem('email')
+      userID: sessionStorage.getItem('email'),
     };
     this.http.post('http://localhost:3000/searchTask', args, { responseType: 'json'}).subscribe(
       (response: any[]) => {
@@ -75,7 +84,50 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  filterTasks() {}
+  filterTasks(query: string) {
+    var datestart = new Date();
+    var dateend = new Date();
+
+    if(this.checkbox1 == true){
+      this.Labarr = this.selectedLab;
+    }
+    else{
+      this.Labarr = ['personal','work','shopping','others'];
+    }
+    if(this.checkbox2 == true){
+      this.Priarr = this.selectedPri;
+    }
+    else{
+      this.Priarr = ['low','medium','high'];
+    }
+    this.searchTextfil(query,this.Labarr,this.Priarr);
+
+  }
+
+  searchTextfil(query: string,selectedLab,selectedPri) {
+    
+    const args = {
+      text: query,
+      userID: sessionStorage.getItem('email'),
+      Labarr: selectedLab,
+      Priarr: selectedPri
+    };
+    this.http.post('http://localhost:3000/searchTaskfil', args, { responseType: 'json'}).subscribe(
+      (response: any[]) => {
+        this.searchData = [];
+
+        for (const task of response) {
+          this.searchData.push(task);
+        }
+        this.data.changeMessage(this.searchData)
+      },
+      (error) => {
+        alert(error);
+      }
+    );
+  }
+
+ 
 
   logOut() {
     this.firstName = null;

@@ -3,12 +3,14 @@
     margin-top: 15px;
     font-family: Montserrat, 'Courier New', Courier, monospace;
     font-weight: bold;
+    display: block;
 }
 * {
     font-family: Montserrat, sans-serif;
 }
 @mixin task-card {
     display: flex;
+    width: fit-content;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 12px;
@@ -35,6 +37,24 @@
         transition: 0.2s;
         box-shadow: 7px 5px rgb(180, 175, 175);
     }
+}
+
+.expiredCard{
+  height : auto;
+  width: auto;
+  border-radius: 5px;
+  background: #ff2626;
+  &:hover {
+      transition: 0.2s;
+      box-shadow: 7px 5px rgb(180, 175, 175);
+  }
+  #priority {
+    color: white;
+    font-weight: bolder;
+  }
+  mat-chip {
+    font-weight: bolder;
+  }
 }
 
 .container {

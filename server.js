@@ -164,13 +164,30 @@ app.put('/deleteTask', (req, res) => {
 });
 
 app.post('/searchTask',(req,res) => {
-  var noMatch = null;
 
     const regex = new RegExp(escapeRegex(req.body.text), 'gi');
     Task.find({
-      title: regex,
+      $or: [{title: regex},{description: regex}],
       userID: req.body.userID
-    }, (err, data) => {
+     },(err, data) => {
+      if(err){
+        console.log(err);
+      }else{
+        console.log(data);
+        res.send(data);
+      }
+    })
+  });
+  app.post('/searchTaskfil',(req,res) => {
+
+    const regex = new RegExp(escapeRegex(req.body.text), 'gi');
+    
+    Task.find({
+      $or: [{title: regex},{description: regex}],
+      userID: req.body.userID, 
+      labels: { $in: req.body.Labarr},
+      priority: { $in: req.body.Priarr}
+     },(err, data) => {
       if(err){
         console.log(err);
       }else{
@@ -278,3 +295,7 @@ http.listen(3000, () => {
 function escapeRegex(text){
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
   }
+
+function filterres(data,Labarr,Priarr){
+   
+}

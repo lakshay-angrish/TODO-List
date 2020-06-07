@@ -28,11 +28,7 @@ export class TasksLayoutComponent implements OnInit {
   isVisibleUpcoming1 = true;
   isVisibleCompleted1 = true;
   userID: string;
-
-  @Input() heading: Text;
-  color1 = '#8bd136';
-  color2 = '#33e0f1';
-
+  noresults: boolean = false;
 
   constructor(private data: SearchService, private http: HttpClient, private dialogBox: MatDialog, private reload: ReloadService) { }
 
@@ -59,14 +55,31 @@ export class TasksLayoutComponent implements OnInit {
         this.isVisibleUpcoming = true;
         this.isVisibleCompleted = true;
 
+        response.sort((task1, task2) => {
+          const D1 = new Date(task1.due);
+          const D2 = new Date(task2.due);
+          if (D1.getFullYear() < D2.getFullYear() || D1.getMonth() < D2.getMonth() ||
+          D1.getDate() < D2.getDate()) {
+            return -1;
+          }
+          return 1;
+        });
+
         for (const task of response) {
           const date = new Date(task.due);
           const now = new Date();
           if (task['status'] === 'running') {
             if (date.getDate() === now.getDate() && date.getMonth() == now.getMonth() && date.getFullYear() === now.getFullYear()) {
               this.tasksToday.push(task);
+
             } else {
-              this.tasksUpcoming.push(task);
+              if (date.getFullYear() < now.getFullYear() || date.getMonth() < now.getMonth() ||
+              date.getDate() < now.getDate()) {
+                this.tasksToday.push(task);
+
+              } else {
+                this.tasksUpcoming.push(task);
+              }
             }
           } else if (task['status'] === 'finished') {
             this.tasksCompleted.push(task);
@@ -101,6 +114,7 @@ export class TasksLayoutComponent implements OnInit {
     });
   } else {
     console.log(this.searchResults.length);
+    console.log(this.searchResults);
     this.H4 = 'Search Results';
     this.isVisible = true;
     this.isVisibleToday = false;
@@ -150,8 +164,7 @@ export class TasksLayoutComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.data = task;
 
-    const dialogRef = this.dialogBox.open(TaskinfoComponent, dialogConfig);
-
+    this.dialogBox.open(TaskinfoComponent, dialogConfig);
   }
 
   priorityMap(p: string) {
@@ -161,13 +174,27 @@ export class TasksLayoutComponent implements OnInit {
       case 'high': return '!!!';
     }
   }
+  
+  expired(task) {
+    const date = new Date(task.due);
+    const now = new Date();
 
-  showLabel(labels) {
-    if (labels.length > 0 && labels[0]) {
-      console.log(labels);
-      return true;
-    } else {
-      return false;
-    }
+    return (date.getFullYear() < now.getFullYear() || date.getMonth() < now.getMonth() || date.getDate() < now.getDate());
   }
+  deleteTask(id) {
+    const args = {
+      _id: id
+    }
+    this.http.put('http://localhost:3000/deleteTask', args, { responseType: 'text'}).subscribe(
+      (response) => {
+        alert(response);
+        this.reload.sendAction(true);
+      },
+      (error) => {
+        alert(error);
+      }
+    );
+    
+  }
+
 }
