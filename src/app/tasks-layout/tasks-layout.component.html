@@ -76,6 +76,7 @@
     </button>
     <h1 id="search-head" class="head">{{ H4 }}</h1>
   </div>
+  <img src="../../assets/images/noresults.jpg" *ngIf="noresults">
   <div id="search_results">
     <div class="card" *ngFor="let task of searchResults" (click) = "cardClick(task)">
       <div class="container" >
