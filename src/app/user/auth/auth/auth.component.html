@@ -53,7 +53,8 @@
                         Password
                     </mat-label>
                     <input name="title" alt="pass" matInput type="password" required minlength="8" #signupPassword="ngModel" [(ngModel)]="password"/>
-                </mat-form-field> <br>
+                    <mat-hint align="start"> <strong style="font-size: 12px;">must be at least 8 characters long</strong></mat-hint>
+                </mat-form-field> <br> <br>
                 <button id="auth-button" [disabled]="signupEmail.invalid || signupPassword.errors?.minlength || signupPassword.invalid || fname.invalid || lname.invalid" mat-button (click)="signUp()">
                     Submit
                 </button>

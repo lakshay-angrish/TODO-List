@@ -11,7 +11,9 @@
 .welcome {
     display: none;
 }
-
+mat-hint {
+    font-size: 12px;
+}
 .login-wrapper {
     height: 100%;
     width: 100%;
@@ -31,7 +33,6 @@ mat-label {
     background-color: lightblue;
     color: black;
     width: inherit;
-    
     &:hover {
         transition: 0.4s;
         background-color: rgb(49, 47, 47);
@@ -39,7 +40,7 @@ mat-label {
     }
 }
 button:disabled,
-button[disabled]{
+button[disabled] {
     cursor: not-allowed;
 }
 
