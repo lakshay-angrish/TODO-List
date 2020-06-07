@@ -9,7 +9,7 @@
     font-family: Montserrat, sans-serif;
 }
 @mixin task-card {
-    display: block;
+    display: flex;
     width: fit-content;
     flex-direction: row;
     flex-wrap: wrap;
