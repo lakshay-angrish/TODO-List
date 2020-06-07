@@ -123,6 +123,10 @@ export class TasksLayoutComponent implements OnInit {
     this.isVisibleToday = false;
     this.isVisibleUpcoming = false;
     this.isVisibleCompleted = false;
+    this.isVisibleToday1 = false;
+    this.isVisibleUpcoming1 = false;
+    this.isVisibleCompleted1 = false;
+
   }} else {
     this.H4 = 'Search Results';
     this.noresults = false;
