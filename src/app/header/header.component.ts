@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
   firstName = 'User';
   searchData: any[] = [];
   searchResults: any[] = [];
-  labels = new FormControl;
+  labels = new FormControl();
 
   labelList: Label[] = [
     {value: 'personal', viewValue: 'Personal'},
