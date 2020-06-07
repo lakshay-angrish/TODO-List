@@ -60,7 +60,7 @@ export class TasksLayoutComponent implements OnInit {
           const date = new Date(task.due);
           const now = new Date();
           if (task['status'] === 'running') {
-            if (date.getDate() === now.getDate() && date.getMonth() == now.getMonth() && date.getFullYear() === now.getFullYear()) {
+            if (date.getDate() === now.getDate() && date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear()) {
               this.tasksToday.push(task);
             } else {
               this.tasksUpcoming.push(task);
@@ -133,7 +133,7 @@ export class TasksLayoutComponent implements OnInit {
     this.reload.sendAction(true);
   }
 
-  cardClick(task){
+  cardClick(task) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.data = task;
@@ -152,7 +152,6 @@ export class TasksLayoutComponent implements OnInit {
 
   showLabel(labels) {
     if (labels.length > 0 && labels[0]) {
-      console.log(labels);
       return true;
     } else {
       return false;

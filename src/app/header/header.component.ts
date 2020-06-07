@@ -5,8 +5,8 @@ import { ReloadService } from '../reload.service';
 import { HttpClient } from '@angular/common/http';
 import {SearchService} from '../search.service';
 import { FormControl } from '@angular/forms';
-import { MatDatepicker } from '@angular/material/datepicker';
 import { Router } from '@angular/router';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 interface Label {
   value: string;
@@ -47,6 +47,7 @@ export class HeaderComponent implements OnInit {
     this.data.currentMessage.subscribe(searchResults => this.searchResults = searchResults);
     this.firstName = sessionStorage.getItem('firstName');
   }
+
   openAddNewTaskDialog() {
     const dialogRef = this.dialogBox.open(AddtaskComponent);
     dialogRef.afterClosed().subscribe(() => {
@@ -66,7 +67,7 @@ export class HeaderComponent implements OnInit {
         for (const task of response) {
           this.searchData.push(task);
         }
-        this.data.changeMessage(this.searchData)
+        this.data.changeMessage(this.searchData);
       },
       (error) => {
         alert(error);
@@ -80,5 +81,9 @@ export class HeaderComponent implements OnInit {
     this.firstName = null;
     sessionStorage.clear();
     this.router.navigate(['/']);
+  }
+
+  openChangePasswordDialog() {
+    this.dialogBox.open(ChangePasswordComponent);
   }
 }

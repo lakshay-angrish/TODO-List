@@ -27,9 +27,9 @@ export class AuthComponent implements OnInit {
       password: this.password
     };
 
-    this.http.post('http://localhost:3000/logIn', args, { responseType: 'text' }).subscribe((response) => {
+    this.http.post('http://localhost:3000/logIn', args, { responseType: 'json' }).subscribe((response: any) => {
       sessionStorage.setItem('email', this.email);
-      sessionStorage.setItem('firstName', response);
+      sessionStorage.setItem('firstName', response.firstName);
       this.router.navigate(['/main']);
     }, (error) => {
       console.log(error);
@@ -45,7 +45,7 @@ export class AuthComponent implements OnInit {
       password: this.password
     };
 
-    this.http.post('http://localhost:300/signUp', args, { responseType: 'text' }).subscribe((response) => {
+    this.http.post('http://localhost:3000/signUp', args, { responseType: 'text' }).subscribe((response) => {
       console.log(response);
       sessionStorage.setItem('email', this.email);
       sessionStorage.setItem('firstName', args.firstName);
