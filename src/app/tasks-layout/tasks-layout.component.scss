@@ -37,6 +37,24 @@
     }
 }
 
+.expiredCard{
+  height : auto;
+  width: auto;
+  border-radius: 5px;
+  background: #ff2626;
+  &:hover {
+      transition: 0.2s;
+      box-shadow: 7px 5px rgb(180, 175, 175);
+  }
+  #priority {
+    color: white;
+    font-weight: bolder;
+  }
+  mat-chip {
+    font-weight: bolder;
+  }
+}
+
 .container {
     display: flex;
     flex-direction: column;
