@@ -11,7 +11,9 @@
 .welcome {
     display: none;
 }
-
+mat-hint {
+    font-size: 12px;
+}
 .login-wrapper {
     height: 100%;
     width: 100%;
@@ -36,6 +38,10 @@ mat-label {
         background-color: rgb(49, 47, 47);
         color: white;
     }
+}
+button:disabled,
+button[disabled] {
+    cursor: not-allowed;
 }
 
 mat-form-field {
