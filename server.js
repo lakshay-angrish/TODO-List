@@ -173,12 +173,19 @@ app.post('/searchTask',(req,res) => {
       if(err){
         console.log(err);
       }else{
-        console.log(data);
-        res.send(data);
+        if(Object.keys(data).length == 0){
+          rdata = {sdata: data,
+            status: false};
+        }else{
+        rdata = {sdata: data,
+                  status: true};
+                }
+      res.send(rdata);
       }
     })
   });
   app.post('/searchTaskfil',(req,res) => {
+    var rdata = {};
 
     const regex = new RegExp(escapeRegex(req.body.text), 'gi');
     
@@ -191,8 +198,14 @@ app.post('/searchTask',(req,res) => {
       if(err){
         console.log(err);
       }else{
-        console.log(data);
-        res.send(data);
+        if(Object.keys(data).length == 0){
+          rdata = {sdata: data,
+            status: false};
+        }else{
+        rdata = {sdata: data,
+                  status: true};
+                }
+      res.send(rdata);
       }
     })
   });

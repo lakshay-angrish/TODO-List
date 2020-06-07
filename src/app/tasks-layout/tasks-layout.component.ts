@@ -16,10 +16,12 @@ export class TasksLayoutComponent implements OnInit {
   tasksUpcoming: any[] = [];
   tasksCompleted: any[] = [];
   searchResults: any[] = [];
+  searchData: any[] = [];
   H1: string;
   H2: string;
   H3: string;
   H4: string;
+  status: boolean= true;
   isVisible = false;
   isVisibleToday = false;
   isVisibleUpcoming = false;
@@ -32,14 +34,16 @@ export class TasksLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.userID = sessionStorage.getItem('email');
-    this.data.currentMessage.subscribe(searchResults => this.searchResults = searchResults);
+    this.data.currentMessage1.subscribe(searchResults => this.searchResults = searchResults);
+    this.data.currentMessage2.subscribe(status => this.status = status);
     this.reload.action.subscribe(async (op) => {
       await this.getAllTasks();
     });
   }
 
   getAllTasks() {
-    if (this.searchResults.length === 0) {
+    if (this.searchResults.length == 0) {
+      if (this.status == true){
       this.http.get('http://localhost:3000/allTasks?userID=' + this.userID, { responseType: 'json' }).subscribe((response: any[]) => {
         this.tasksToday = [];
         this.tasksUpcoming = [];
@@ -103,10 +107,16 @@ export class TasksLayoutComponent implements OnInit {
           this.isVisibleCompleted = false;
         }
     });
-  } else {
-    console.log(this.searchResults.length);
-    console.log(this.searchResults);
+  }else if(this.status == false){
     this.H4 = 'Search Results';
+    this.noresults = true;
+    this.isVisible = true;
+    this.isVisibleToday = false;
+    this.isVisibleUpcoming = false;
+    this.isVisibleCompleted = false;
+  }} else {
+    this.H4 = 'Search Results';
+    this.noresults = false;
     this.isVisible = true;
     this.isVisibleToday = false;
     this.isVisibleUpcoming = false;
@@ -143,6 +153,8 @@ export class TasksLayoutComponent implements OnInit {
 
   goBack() {
     this.H4 = '';
+    this.noresults = false;
+    this.status = true;
     this.searchResults = [];
     this.reload.sendAction(true);
   }

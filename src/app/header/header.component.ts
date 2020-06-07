@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 
+
 interface Label {
   value: string;
   viewValue: string;
@@ -26,6 +27,7 @@ export class HeaderComponent implements OnInit {
   firstName = 'User';
   searchData: any[] = [];
   searchResults: any[] = [];
+  status: boolean;
   labels = new FormControl;
   checkbox1: boolean = false;
   checkbox2: boolean = false;
@@ -34,6 +36,7 @@ export class HeaderComponent implements OnInit {
   Labarr: any[];
   Priarr: any[];
   isVisible: boolean = true;
+  sdata: any[] = []
 
 
   labelList: Label[] = [
@@ -52,7 +55,9 @@ export class HeaderComponent implements OnInit {
               public dialogBox: MatDialog, private reload: ReloadService, private router: Router) {}
 
   ngOnInit(): void {
-    this.data.currentMessage.subscribe(searchResults => this.searchResults = searchResults);
+    this.data.currentMessage1.subscribe(searchResults => this.searchResults = searchResults);
+    this.data.currentMessage2.subscribe(status => this.status = status);
+    
     this.firstName = sessionStorage.getItem('firstName');
   }
 
@@ -64,19 +69,15 @@ export class HeaderComponent implements OnInit {
   }
 
   searchText(query: string) {
-    
     const args = {
       text: query,
       userID: sessionStorage.getItem('email'),
     };
     this.http.post('http://localhost:3000/searchTask', args, { responseType: 'json'}).subscribe(
       (response: any[]) => {
-        this.searchData = [];
-
-        for (const task of response) {
-          this.searchData.push(task);
-        }
-        this.data.changeMessage(this.searchData);
+        this.searchData = response['sdata'];
+        this.status = response['status'];
+        this.data.changeMessage(this.searchData,this.status);
       },
       (error) => {
         alert(error);
@@ -114,12 +115,9 @@ export class HeaderComponent implements OnInit {
     };
     this.http.post('http://localhost:3000/searchTaskfil', args, { responseType: 'json'}).subscribe(
       (response: any[]) => {
-        this.searchData = [];
-
-        for (const task of response) {
-          this.searchData.push(task);
-        }
-        this.data.changeMessage(this.searchData)
+        this.searchData = response['sdata'];
+        this.status = response['status'];
+        this.data.changeMessage(this.searchData,this.status);
       },
       (error) => {
         alert(error);
