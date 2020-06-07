@@ -152,7 +152,6 @@ export class TasksLayoutComponent implements OnInit {
 
   showLabel(labels) {
     if (labels.length > 0 && labels[0]) {
-      console.log(labels);
       return true;
     } else {
       return false;

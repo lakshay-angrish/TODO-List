@@ -70,19 +70,28 @@
   </div>
   <div id="search_results">
     <div class="card" *ngFor="let task of searchResults" (click) = "cardClick(task)">
-        <div class="container" >
-          <span class="title">{{ task.title | titlecase }}</span>
-          <span class="due">{{ task.due }}</span>
-          <span class="edit-button">
-            <button mat-button color="primary" (click)="openEditTaskDialog(task);$event.stopPropagation()">
-              <img src="../../assets/images/edit_pencil.svg" alt="edit task">
-            </button>
+      <div class="container" >
+        <span class="title">{{ task.title | titlecase }}</span>
+        <span class="due">{{ task.due }}</span>
+        <span>
+          <mat-chip-list *ngIf="showLabel(task.labels)">
+            <mat-chip disabled>{{ task.labels[0] }}</mat-chip>
+          </mat-chip-list>
+
+          <button id="priority" mat-button disabled>
+            {{ priorityMap(task.priority) }}
+          </button>
+
+          <button mat-button color="primary" (click)="openEditTaskDialog(task);$event.stopPropagation()" >
+            <img src="../../assets/images/edit_pencil.svg" alt="edit task">
+          </button>
+
           <button mat-button color="primary" (click)="doneTask(task._id);$event.stopPropagation()">
-              <img src="../../assets/images/done.svg" width="20" color="green" alt="done task">
-            </button>
+            <img src="../../assets/images/done.svg" width="20" color="green" alt="done task">
+          </button>
         </span>
-        </div>
-    </div>
+      </div>
+  </div>
   </div>
 
 </div>

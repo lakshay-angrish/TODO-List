@@ -51,6 +51,7 @@ export class AddtaskComponent implements OnInit {
     }
   }
   addTask() {
+    console.log(this.due);
     const args = {
       title: this.title,
       due: this.due,
