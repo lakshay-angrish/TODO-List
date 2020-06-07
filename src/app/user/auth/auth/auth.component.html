@@ -19,7 +19,7 @@
                     </mat-label>
                     <input name="title" alt="pass" matInput type="password" required [(ngModel)]="password" minlength="8" #loginPassword="ngModel"/>
                 </mat-form-field> <br>
-                <p *ngIf="invalidUser" style="font-size: 12px; color: red;">Incorrent email/password</p>
+                <p *ngIf="invalidUser" style="font-size: 12px; color: red;">Incorrect email/password</p>
                 <button id="auth-button" [disabled]="loginEmail.invalid || loginPassword.errors?.minlength || loginPassword.invalid" mat-button (click)="logIn()">
                     Submit
                 </button>
