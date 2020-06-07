@@ -22,7 +22,7 @@ const material = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatSliderModule,
-  MatTabsModule
+  MatTabsModule,
 ]
 
 @NgModule({
