@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import {SearchService} from '../search.service';
 import { FormControl } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { Router } from '@angular/router';
 
 interface Label {
   value: string;
@@ -39,7 +40,8 @@ export class HeaderComponent implements OnInit {
     {value: 'high', viewValue: 'High'}
   ];
 
-  constructor(private data: SearchService, private http: HttpClient, public dialogBox: MatDialog, private reload: ReloadService) { }
+  constructor(private data: SearchService, private http: HttpClient,
+              public dialogBox: MatDialog, private reload: ReloadService, private router: Router) {}
 
   ngOnInit(): void {
     this.data.currentMessage.subscribe(searchResults => this.searchResults = searchResults);
@@ -72,7 +74,11 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  filterTasks(){
+  filterTasks() {}
 
+  logOut() {
+    this.firstName = null;
+    sessionStorage.clear();
+    this.router.navigate(['/']);
   }
 }
