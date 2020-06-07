@@ -28,7 +28,6 @@ export class TasksLayoutComponent implements OnInit {
   isVisibleCompleted = false;
   isVisibleToday1 = true;
   isVisibleUpcoming1 = true;
-  isVisibleCompleted1 = true;
   userID: string;
   noresults: boolean = false;
 
@@ -123,6 +122,8 @@ export class TasksLayoutComponent implements OnInit {
     this.isVisibleToday = false;
     this.isVisibleUpcoming = false;
     this.isVisibleCompleted = false;
+    this.isVisibleToday1 = false;
+    this.isVisibleUpcoming1 = false;
   }} else {
     this.H4 = 'Search Results';
     this.noresults = false;
@@ -132,7 +133,6 @@ export class TasksLayoutComponent implements OnInit {
     this.isVisibleCompleted = false;
     this.isVisibleToday1 = false;
     this.isVisibleUpcoming1 = false;
-    this.isVisibleCompleted1 = false;
     for (const task of this.searchResults) {
       task.due = new Date(task.due).toDateString();
     }
