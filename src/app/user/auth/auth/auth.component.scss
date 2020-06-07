@@ -31,11 +31,16 @@ mat-label {
     background-color: lightblue;
     color: black;
     width: inherit;
+    
     &:hover {
         transition: 0.4s;
         background-color: rgb(49, 47, 47);
         color: white;
     }
+}
+button:disabled,
+button[disabled]{
+    cursor: not-allowed;
 }
 
 mat-form-field {

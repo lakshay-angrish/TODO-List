@@ -12,7 +12,7 @@
 <header>
     <form action="" novalidate>
         <mat-form-field matTooltip="enter a task" hideRequiredMarker formnovalidate name="search" tooltip="ds"
-            appearance="standard" color="primary" minlength="1" [style.width.ex]=30>
+            appearance="standard" color="primary" [style.width.ex]=30>
             <mat-label>
                 Search the task..
             </mat-label>
@@ -20,7 +20,7 @@
         </mat-form-field>
     </form>
     <span>
-        <button mat-button (click) = "searchText(textin.value)" [disabled]="!textin.value.length" matTooltip="click to search">
+        <button mat-button (click) = "searchText(textin.value)" matTooltip="click to search">
             <mat-icon>search</mat-icon>
         </button>
         <button matTooltip="Add new task" mat-button (click)="openAddNewTaskDialog()"><mat-icon>add</mat-icon></button>
