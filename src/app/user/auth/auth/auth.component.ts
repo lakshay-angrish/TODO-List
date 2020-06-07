@@ -45,14 +45,14 @@ export class AuthComponent implements OnInit {
       password: this.password
     };
 
-    this.http.post('http://localhost:3000/signUp', args, { responseType: 'text' }).subscribe((response) => {
+    this.http.post('http://localhost:300/signUp', args, { responseType: 'text' }).subscribe((response) => {
       console.log(response);
       sessionStorage.setItem('email', this.email);
       sessionStorage.setItem('firstName', args.firstName);
       this.router.navigate(['/main']);
     }, (error) => {
       console.log(error);
-      alert(error);
+      alert(error.statusText);
     });
   }
 }
