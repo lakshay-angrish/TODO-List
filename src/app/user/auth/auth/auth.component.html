@@ -4,21 +4,23 @@
         <mat-tab-group mat-align-tabs="start">
             <mat-tab label="Login">
                 <br>
-                <mat-form-field hideRequiredMarker color="primary" formnovalidate name="email" appearance="outline"
+                <mat-form-field hideRequiredMarker color="primary" name="email" appearance="outline"
                     >
                     <mat-label>
                         Email
                     </mat-label>
-                    <input name="title" alt="email" matInput type="email" required [(ngModel)]="email"/>
+                    <input name="title" alt="email" matInput type="email" required [(ngModel)]="email"
+                    required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,3})$" #loginEmail = "ngModel"/>
                 </mat-form-field>
                 <mat-form-field hideRequiredMarker formnovalidate color="primary" name="password" appearance="outline"
                     >
                     <mat-label>
                         Password
                     </mat-label>
-                    <input name="title" alt="pass" matInput type="password" required [(ngModel)]="password"/>
+                    <input name="title" alt="pass" matInput type="password" required [(ngModel)]="password" minlength="8" #loginPassword="ngModel"/>
                 </mat-form-field> <br>
-                <button id="auth-button" mat-button (click)="logIn()">
+                <p *ngIf="invalidUser" style="font-size: 12px; color: red;">Incorrect email/password</p>
+                <button id="auth-button" [disabled]="loginEmail.invalid || loginPassword.errors?.minlength || loginPassword.invalid" mat-button (click)="logIn()">
                     Submit
                 </button>
             </mat-tab>
@@ -29,30 +31,31 @@
                     <mat-label>
                         First name
                     </mat-label>
-                    <input name="title" alt="email" matInput type="text" required [(ngModel)]="firstName"/>
+                    <input name="title" alt="email" matInput type="text" required pattern="[a-zA-Z][a-zA-Z]*" #fname="ngModel" [(ngModel)]="firstName"/>
                 </mat-form-field>
                 <mat-form-field hideRequiredMarker color="primary" formnovalidate name="last-name" appearance="outline"
                      >
                     <mat-label>
                         Last name
                     </mat-label>
-                    <input name="title" alt="email" matInput type="text" required [(ngModel)]="lastName"/>
+                    <input name="title" alt="email" matInput type="text" required pattern="[a-zA-Z][a-zA-Z]*" #lname="ngModel" [(ngModel)]="lastName"/>
                 </mat-form-field>
                 <mat-form-field hideRequiredMarker color="primary" formnovalidate name="email" appearance="outline"
                      >
                     <mat-label>
                         Email
                     </mat-label>
-                    <input name="title" alt="email" matInput type="text" required [(ngModel)]="email"/>
+                    <input name="title" alt="email" matInput type="text" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,3})$" #signupEmail = "ngModel" [(ngModel)]="email"/>
                 </mat-form-field>
                 <mat-form-field hideRequiredMarker formnovalidate color="primary" name="password" appearance="outline"
                      >
                     <mat-label>
                         Password
                     </mat-label>
-                    <input name="title" alt="pass" matInput type="password" required [(ngModel)]="password"/>
-                </mat-form-field> <br>
-                <button id="auth-button" mat-button (click)="signUp()">
+                    <input name="title" alt="pass" matInput type="password" required minlength="8" #signupPassword="ngModel" [(ngModel)]="password"/>
+                    <mat-hint align="start"> <strong style="font-size: 12px;">must be at least 8 characters long</strong></mat-hint>
+                </mat-form-field> <br> <br>
+                <button id="auth-button" [disabled]="signupEmail.invalid || signupPassword.errors?.minlength || signupPassword.invalid || fname.invalid || lname.invalid" mat-button (click)="signUp()">
                     Submit
                 </button>
             </mat-tab>

@@ -12,7 +12,7 @@ export class AuthComponent implements OnInit {
   lastName: string;
   email: string;
   password: string;
-
+  invalidUser = false;
   constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -27,14 +27,13 @@ export class AuthComponent implements OnInit {
       password: this.password
     };
 
-    this.http.post('http://localhost:3000/logIn', args, { responseType: 'text' }).subscribe((response) => {
-      alert('User Authenticated');
+    this.http.post('http://localhost:3000/logIn', args, { responseType: 'json' }).subscribe((response: any) => {
       sessionStorage.setItem('email', this.email);
-      sessionStorage.setItem('firstName', response);
+      sessionStorage.setItem('firstName', response.firstName);
       this.router.navigate(['/main']);
     }, (error) => {
       console.log(error);
-      alert(error.error);
+      this.invalidUser = true;
     });
   }
 
@@ -47,13 +46,13 @@ export class AuthComponent implements OnInit {
     };
 
     this.http.post('http://localhost:3000/signUp', args, { responseType: 'text' }).subscribe((response) => {
-      alert(response);
+      console.log(response);
       sessionStorage.setItem('email', this.email);
       sessionStorage.setItem('firstName', args.firstName);
       this.router.navigate(['/main']);
     }, (error) => {
       console.log(error);
-      alert(error.error);
+      alert(error.statusText);
     });
   }
 }
