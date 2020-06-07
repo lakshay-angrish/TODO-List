@@ -217,11 +217,52 @@ app.post('/logIn', async (req, res) => {
     } else {
       const match = await bcrypt.compare(req.body.password, user.password);
       if (match) {
-        res.send(user.firstName);
-        console.log(user.firstName);
+        res.send(user);
+        console.log(user);
       } else {
         res.status(500).send('User not found.');
         console.log('User not found');
+      }
+    }
+
+  } catch {
+    res.status(500).send('Server Error!');
+  }
+});
+
+app.put('/changePassword', async (req, res) => {
+  try {
+    const user = await User.findOne({
+      email: req.body.email
+    });
+    if (!user) {
+      console.log('User not found');
+      res.status(500).send('User not found');
+    } else {
+      const match = await bcrypt.compare(req.body.currentPassword, user.password);
+      if (match) {
+        const hashedPassword = await bcrypt.hash(req.body.newPassword, 10);
+        console.log(user.password);
+        console.log(hashedPassword);
+        User.updateOne({
+          email: req.body.email
+        }, {
+          password: hashedPassword
+        }, (error) => {
+          if (error) {
+            res.status(500).send();
+            console.log('Server Error');
+
+          } else {
+            res.send('Password Updated');
+            console.log('Password Updated');
+          }
+        });
+
+
+      } else {
+        res.status(500).send('Invalid Current Password');
+        console.log('Invalid Current Password');
       }
     }
 

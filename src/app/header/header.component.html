@@ -4,6 +4,9 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #settingsMenu="matMenu">
+    <button mat-menu-item (click)="openChangePasswordDialog()">
+      <span>Change Password</span>
+    </button>
     <button mat-menu-item (click)="logOut()">
       <span>Log Out</span>
     </button>

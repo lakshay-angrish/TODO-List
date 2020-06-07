@@ -27,10 +27,10 @@ export class AuthComponent implements OnInit {
       password: this.password
     };
 
-    this.http.post('http://localhost:3000/logIn', args, { responseType: 'text' }).subscribe((response) => {
+    this.http.post('http://localhost:3000/logIn', args, { responseType: 'json' }).subscribe((response: any) => {
       alert('User Authenticated');
       sessionStorage.setItem('email', this.email);
-      sessionStorage.setItem('firstName', response);
+      sessionStorage.setItem('firstName', response.firstName);
       this.router.navigate(['/main']);
     }, (error) => {
       console.log(error);

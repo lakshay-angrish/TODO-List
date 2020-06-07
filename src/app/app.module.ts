@@ -17,6 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {MatChipsModule} from '@angular/material/chips';
     TasksLayoutComponent,
     EditTaskComponent,
     AuthComponent,
-    TaskinfoComponent
+    TaskinfoComponent,
+    ChangePasswordComponent
   ],
   imports: [
     FormsModule,
