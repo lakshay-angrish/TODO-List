@@ -3,7 +3,7 @@
 </div>
 <div id="content">
   <h1 class="head" *ngIf="isVisibleToday">{{ H1 }}</h1>
-  <div *ngIf="!isVisibleToday">
+  <div *ngIf="isVisibleToday1">
     <img src="../../assets/images/empty_todos.svg" width="60px" alt=""><strong> You've no due tasks today!!! </strong>
   </div>
   <div >
@@ -33,7 +33,7 @@
       </div>
   </div> <br>
   <h1 class="head" *ngIf="isVisibleUpcoming">{{ H2 }}</h1>
-  <div *ngIf="!isVisibleUpcoming">
+  <div *ngIf="isVisibleUpcoming1">
     <img src="../../assets/images/empty_todos.svg" width="60px" alt=""><strong> You've no upcoming tasks!!! </strong>
   </div>
   <div id="task_upcoming" *ngIf="isVisibleUpcoming">
