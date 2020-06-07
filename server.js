@@ -183,11 +183,11 @@ app.post('/searchTask',(req,res) => {
     const regex = new RegExp(escapeRegex(req.body.text), 'gi');
     
     Task.find({
-      title: regex,
+      $or: [{title: regex},{description: regex}],
       userID: req.body.userID, 
       labels: { $in: req.body.Labarr},
-      priority: { $in: req.body.Priarr}
-      // due: { $gt: new Date(req.body.datestart), $lt: new Date(req.body.dateend)}
+      priority: { $in: req.body.Priarr},
+      due: { $gt: new Date(req.body.datestart), $lt: new Date(req.body.dateend)}
      },(err, data) => {
       if(err){
         console.log(err);

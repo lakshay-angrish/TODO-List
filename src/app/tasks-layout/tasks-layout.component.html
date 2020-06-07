@@ -59,6 +59,9 @@
           <div class="container" >
             <span class="title">{{ task.title | titlecase }}</span>
             <span class="due">{{ task.due }}</span>
+            <button mat-button color="primary" (click)="deleteTask(task._id);$event.stopPropagation()">
+              <img src="../../assets/images/trash.png" height="25px" width="25px">
+            </button>
           </div>
       </div>
   </div>

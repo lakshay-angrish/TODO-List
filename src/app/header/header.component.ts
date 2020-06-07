@@ -108,7 +108,7 @@ export class HeaderComponent implements OnInit {
       dateend = this.due2;
       console.log(this.due1);
     }
-    this.searchTextfil(query,this.Labarr,this.Priarr,datestart,dateend);
+    this.searchTextfil(query,this.Labarr,this.Priarr,this.due1,this.due2);
 
   }
 

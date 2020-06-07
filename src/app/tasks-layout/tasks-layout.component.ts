@@ -25,6 +25,7 @@ export class TasksLayoutComponent implements OnInit {
   isVisibleUpcoming = false;
   isVisibleCompleted = false;
   userID: string;
+  noresults: boolean = false;
 
   @Input() heading: Text;
   color1 = '#8bd136';
@@ -157,4 +158,20 @@ export class TasksLayoutComponent implements OnInit {
       return false;
     }
   }
+  deleteTask(id) {
+    const args = {
+      _id: id
+    }
+    this.http.put('http://localhost:3000/deleteTask', args, { responseType: 'text'}).subscribe(
+      (response) => {
+        alert(response);
+        this.reload.sendAction(true);
+      },
+      (error) => {
+        alert(error);
+      }
+    );
+    
+  }
+
 }
