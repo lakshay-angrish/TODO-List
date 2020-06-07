@@ -1,9 +1,9 @@
 <span id="username">Hi, {{ firstName }}!</span>
 <div class="settings">
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <button mat-icon-button [matMenuTriggerFor]="settingsMenu" aria-label="Example icon-button with a menu">
     <mat-icon>more_vert</mat-icon>
   </button>
-  <mat-menu #menu="matMenu">
+  <mat-menu #settingsMenu="matMenu">
     <button mat-menu-item (click)="logOut()">
       <span>Log Out</span>
     </button>
@@ -34,7 +34,7 @@
                           <mat-option *ngFor="let label of labelList" [value]="label.value">{{label.viewValue}}</mat-option>
                         </mat-select>
                       </mat-form-field>
-                      
+
                 </mat-checkbox>
             </button>
             <button mat-menu-item>
@@ -63,10 +63,10 @@
                         <input name="due" placeholder="mm/dd/yyyy" matInput [matDatepicker]="picker2" value="due"  />
                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                         <mat-datepicker #picker2></mat-datepicker>
-                    </mat-form-field>           
+                    </mat-form-field>
                 </mat-checkbox>
             </button>
         </mat-menu>
     </span>
-    
+
 </header>
