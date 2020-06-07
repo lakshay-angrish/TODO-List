@@ -1,15 +1,12 @@
-<div *ngIf="heading" id='heading'>
-    <h2>{{ heading }}</h2>
-</div>
 <div id="content">
   <h1 class="head" *ngIf="isVisibleToday">{{ H1 }}</h1>
   <div id="task_today" *ngIf="isVisibleToday">
-      <div class="card" *ngFor="let task of tasksToday" (click) = "cardClick(task)">
+      <div *ngFor="let task of tasksToday" (click) = "cardClick(task)" [className]="expired(task)? 'expiredCard' : 'card'">
           <div class="container" >
             <span class="title">{{ task.title | titlecase }}</span>
             <span class="due">{{ task.due }}</span>
             <span>
-              <mat-chip-list *ngIf="showLabel(task.labels)">
+              <mat-chip-list>
                 <mat-chip disabled>{{ task.labels[0] }}</mat-chip>
               </mat-chip-list>
 
@@ -35,7 +32,7 @@
           <span class="title">{{ task.title | titlecase }}</span>
           <span class="due">{{ task.due }}</span>
           <span class="edit-button">
-            <mat-chip-list *ngIf="showLabel(task.labels)">
+            <mat-chip-list>
               <mat-chip disabled>{{ task.labels[0] }}</mat-chip>
             </mat-chip-list>
 

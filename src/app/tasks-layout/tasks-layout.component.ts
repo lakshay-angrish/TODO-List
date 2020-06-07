@@ -26,11 +26,6 @@ export class TasksLayoutComponent implements OnInit {
   isVisibleCompleted = false;
   userID: string;
 
-  @Input() heading: Text;
-  color1 = '#8bd136';
-  color2 = '#33e0f1';
-
-
   constructor(private data: SearchService, private http: HttpClient, private dialogBox: MatDialog, private reload: ReloadService) { }
 
 
@@ -56,14 +51,31 @@ export class TasksLayoutComponent implements OnInit {
         this.isVisibleUpcoming = true;
         this.isVisibleCompleted = true;
 
+        response.sort((task1, task2) => {
+          const D1 = new Date(task1.due);
+          const D2 = new Date(task2.due);
+          if (D1.getFullYear() < D2.getFullYear() || D1.getMonth() < D2.getMonth() ||
+          D1.getDate() < D2.getDate()) {
+            return -1;
+          }
+          return 1;
+        });
+
         for (const task of response) {
           const date = new Date(task.due);
           const now = new Date();
           if (task['status'] === 'running') {
             if (date.getDate() === now.getDate() && date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear()) {
               this.tasksToday.push(task);
+
             } else {
-              this.tasksUpcoming.push(task);
+              if (date.getFullYear() < now.getFullYear() || date.getMonth() < now.getMonth() ||
+              date.getDate() < now.getDate()) {
+                this.tasksToday.push(task);
+
+              } else {
+                this.tasksUpcoming.push(task);
+              }
             }
           } else if (task['status'] === 'finished') {
             this.tasksCompleted.push(task);
@@ -138,8 +150,7 @@ export class TasksLayoutComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.data = task;
 
-    const dialogRef = this.dialogBox.open(TaskinfoComponent, dialogConfig);
-
+    this.dialogBox.open(TaskinfoComponent, dialogConfig);
   }
 
   priorityMap(p: string) {
@@ -150,11 +161,10 @@ export class TasksLayoutComponent implements OnInit {
     }
   }
 
-  showLabel(labels) {
-    if (labels.length > 0 && labels[0]) {
-      return true;
-    } else {
-      return false;
-    }
+  expired(task) {
+    const date = new Date(task.due);
+    const now = new Date();
+
+    return (date.getFullYear() < now.getFullYear() || date.getMonth() < now.getMonth() || date.getDate() < now.getDate());
   }
 }
