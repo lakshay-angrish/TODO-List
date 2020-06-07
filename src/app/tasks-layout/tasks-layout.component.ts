@@ -24,6 +24,9 @@ export class TasksLayoutComponent implements OnInit {
   isVisibleToday = false;
   isVisibleUpcoming = false;
   isVisibleCompleted = false;
+  isVisibleToday1 = true;
+  isVisibleUpcoming1 = true;
+  isVisibleCompleted1 = true;
   userID: string;
 
   constructor(private data: SearchService, private http: HttpClient, private dialogBox: MatDialog, private reload: ReloadService) { }
@@ -65,7 +68,7 @@ export class TasksLayoutComponent implements OnInit {
           const date = new Date(task.due);
           const now = new Date();
           if (task['status'] === 'running') {
-            if (date.getDate() === now.getDate() && date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear()) {
+            if (date.getDate() === now.getDate() && date.getMonth() == now.getMonth() && date.getFullYear() === now.getFullYear()) {
               this.tasksToday.push(task);
 
             } else {
@@ -94,9 +97,15 @@ export class TasksLayoutComponent implements OnInit {
         }
         if (this.tasksToday.length === 0) {
           this.isVisibleToday = false;
+          this.isVisibleToday1 = true;
+        } else {
+          this.isVisibleToday1 = false;
         }
         if (this.tasksUpcoming.length === 0) {
           this.isVisibleUpcoming = false;
+          this.isVisibleUpcoming1 = true;
+        } else {
+          this.isVisibleUpcoming1 = false;
         }
         if (this.tasksCompleted.length === 0) {
           this.isVisibleCompleted = false;
@@ -109,6 +118,9 @@ export class TasksLayoutComponent implements OnInit {
     this.isVisibleToday = false;
     this.isVisibleUpcoming = false;
     this.isVisibleCompleted = false;
+    this.isVisibleToday1 = false;
+    this.isVisibleUpcoming1 = false;
+    this.isVisibleCompleted1 = false;
     for (const task of this.searchResults) {
       task.due = new Date(task.due).toDateString();
     }
@@ -145,7 +157,7 @@ export class TasksLayoutComponent implements OnInit {
     this.reload.sendAction(true);
   }
 
-  cardClick(task) {
+  cardClick(task){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.data = task;
@@ -161,10 +173,20 @@ export class TasksLayoutComponent implements OnInit {
     }
   }
 
+<<<<<<< HEAD
   expired(task) {
     const date = new Date(task.due);
     const now = new Date();
 
     return (date.getFullYear() < now.getFullYear() || date.getMonth() < now.getMonth() || date.getDate() < now.getDate());
+=======
+  showLabel(labels) {
+    if (labels.length > 0 && labels[0]) {
+      console.log(labels);
+      return true;
+    } else {
+      return false;
+    }
+>>>>>>> resolved #64
   }
 }
