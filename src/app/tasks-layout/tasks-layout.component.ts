@@ -4,7 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditTaskComponent } from '../user/edit-task/edit-task.component';
 import { ReloadService } from '../reload.service';
 import {SearchService} from '../search.service';
-import {TaskinfoComponent} from '../user/taskinfo/taskinfo.component'
+import {TaskinfoComponent} from '../user/taskinfo/taskinfo.component';
 
 @Component({
   selector: 'app-tasks-layout',
@@ -141,5 +141,22 @@ export class TasksLayoutComponent implements OnInit {
 
     const dialogRef = this.dialogBox.open(TaskinfoComponent, dialogConfig);
 
+  }
+
+  priorityMap(p: string) {
+    switch (p) {
+      case 'low': return '!';
+      case 'medium': return '!!';
+      case 'high': return '!!!';
+    }
+  }
+
+  showLabel(labels: []) {
+    if (labels[0]) {
+      console.log(labels);
+      return true;
+    } else {
+      return false;
+    }
   }
 }

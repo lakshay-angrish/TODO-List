@@ -45,6 +45,7 @@
     margin: 0.5em 1em 0.1em 0.5em;//TRBL
     color: black;
 }
+
 .title {
     font-family: 'Indie Flower', sans-serif;
     font-weight: bold;
@@ -59,7 +60,7 @@
     display: inline-block;
     margin-top: 15px;
     margin-bottom: 16px;
-    
+
 }
 #search-head{
     display: inline-block;
@@ -72,4 +73,9 @@ h1{
     margin-bottom: 15px;
     margin-top: 15px;
     height: wrap;
+}
+
+#priority {
+  color: red;
+  font-weight: bold;
 }

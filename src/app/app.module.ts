@@ -15,7 +15,8 @@ import { AuthComponent } from './user/auth/auth/auth.component';
 import { TaskinfoComponent } from './user/taskinfo/taskinfo.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
-import {MatCheckboxModule} from '@angular/material/checkbox'; 
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     HttpClientModule,
     MatCardModule,
     MatMenuModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
