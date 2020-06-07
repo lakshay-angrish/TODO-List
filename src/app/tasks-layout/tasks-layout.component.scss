@@ -3,12 +3,14 @@
     margin-top: 15px;
     font-family: Montserrat, 'Courier New', Courier, monospace;
     font-weight: bold;
+    display: block;
 }
 * {
     font-family: Montserrat, sans-serif;
 }
 @mixin task-card {
     display: flex;
+    width: fit-content;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 12px;

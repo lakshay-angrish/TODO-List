@@ -64,6 +64,9 @@
           <div class="container" >
             <span class="title">{{ task.title | titlecase }}</span>
             <span class="due">{{ task.due }}</span>
+            <button mat-button color="primary" (click)="deleteTask(task._id);$event.stopPropagation()">
+              <img src="../../assets/images/trash.png" height="25px" width="25px">
+            </button>
           </div>
       </div>
   </div>
@@ -75,19 +78,28 @@
   </div>
   <div id="search_results">
     <div class="card" *ngFor="let task of searchResults" (click) = "cardClick(task)">
-        <div class="container" >
-          <span class="title">{{ task.title | titlecase }}</span>
-          <span class="due">{{ task.due }}</span>
-          <span class="edit-button">
-            <button mat-icon-button color="primary" (click)="openEditTaskDialog(task);$event.stopPropagation()">
-              <img src="../../assets/images/edit_pencil.svg" alt="edit task">
-            </button>
-          <button mat-icon-button color="primary" (click)="doneTask(task._id);$event.stopPropagation()">
-              <img src="../../assets/images/done.svg" width="20" color="green" alt="done task">
-            </button>
-        </span>
-        </div>
-    </div>
+      <div class="container" >
+        <span class="title">{{ task.title | titlecase }}</span>
+        <span class="due">{{ task.due }}</span>
+        <span class="edit-button">
+          <mat-chip-list>
+            <mat-chip disabled>{{ task.labels[0] }}</mat-chip>
+          </mat-chip-list>
+
+          <button id="priority" mat-icon-button disabled>
+            {{ priorityMap(task.priority) }}
+          </button>
+
+          <button mat-icon-button color="primary" (click)="openEditTaskDialog(task);$event.stopPropagation()">
+            <img src="../../assets/images/edit_pencil.svg" alt="edit task">
+          </button>
+        <button mat-icon-button color="primary" (click)="doneTask(task._id);$event.stopPropagation()">
+            <img src="../../assets/images/done.svg" width="20" color="green" alt="done task">
+          </button>
+      </span>
+      </div>
+  </div>
+  </div>
   </div>
 
 </div>

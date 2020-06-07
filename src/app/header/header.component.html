@@ -27,13 +27,13 @@
             <mat-icon>search</mat-icon>
         </button>
         <button matTooltip="Add new task" mat-icon-button (click)="openAddNewTaskDialog()"><mat-icon>add</mat-icon></button>
-        <button matTooltip="Filter tasks" [matMenuTriggerFor]="menu" mat-icon-button (click)="filterTasks()"><mat-icon>filter_list_all</mat-icon></button>
+        <button matTooltip="Filter tasks" [matMenuTriggerFor]="menu" mat-icon-button ><mat-icon>filter_list_all</mat-icon></button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item>
-                <mat-checkbox (click)="$event.stopPropagation()">
-                    <mat-form-field>
+                <mat-checkbox (click)="$event.stopPropagation()" [(ngModel)]="checkbox1" name="checkbox1">
+                    <mat-form-field (click)="$event.stopPropagation()">
                         <mat-label>Labels</mat-label>
-                        <mat-select multiple>
+                        <mat-select multiple [(ngModel)]="selectedLab" >
                           <mat-option *ngFor="let label of labelList" [value]="label.value">{{label.viewValue}}</mat-option>
                         </mat-select>
                       </mat-form-field>
@@ -41,20 +41,20 @@
                 </mat-checkbox>
             </button>
             <button mat-menu-item>
-                <mat-checkbox (click)="$event.stopPropagation()">
-                    <mat-form-field>
+                <mat-checkbox (click)="$event.stopPropagation()" [(ngModel)]="checkbox2" name="checkbox2">
+                    <mat-form-field (click)="$event.stopPropagation()">
                         <mat-label>Priority</mat-label>
-                        <mat-select multiple>
+                        <mat-select multiple [(ngModel)]="selectedPri" >
                           <mat-option *ngFor="let priority of priorityList" [value]="priority.value">{{priority.viewValue}}</mat-option>
                         </mat-select>
                       </mat-form-field>
                 </mat-checkbox>
             </button>
-            <button mat-menu-item>
-                <mat-checkbox (click)="$event.stopPropagation()">
+            <!-- <button mat-menu-item>
+                <mat-checkbox (click)="$event.stopPropagation()" [(ngModel)]="checkbox3" name="checkbox3">
                     <mat-form-field matTooltip="choose a date" style="display: inline-block;width: 90px;">
                         <mat-label>Date</mat-label>
-                        <input name="due" placeholder="mm/dd/yyyy" matInput [matDatepicker]="picker1" value="due"  />
+                        <input name="due" placeholder="mm/dd/yyyy" matInput [matDatepicker]="picker1" value="due1"  />
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
                     </mat-form-field>
@@ -63,13 +63,15 @@
                       </h4>
                       <mat-form-field matTooltip="choose a date" style="display: inline-block;width: 90px;">
                         <mat-label>Date</mat-label>
-                        <input name="due" placeholder="mm/dd/yyyy" matInput [matDatepicker]="picker2" value="due"  />
+                        <input name="due" placeholder="mm/dd/yyyy" matInput [matDatepicker]="picker2" value="due2"  />
                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                         <mat-datepicker #picker2></mat-datepicker>
                     </mat-form-field>
                 </mat-checkbox>
+            </button> -->
+            <button mat-menu-item style="pointer-events: none;" (click)="$event.stopPropagation()">
+              <button mat-stroked-button color="warn" style="pointer-events: all;" (click)="filterTasks(textin.value);$event.stopPropagation()">Submit</button>
             </button>
         </mat-menu>
     </span>
-
 </header>

@@ -25,6 +25,7 @@ export class TasksLayoutComponent implements OnInit {
   isVisibleUpcoming = false;
   isVisibleCompleted = false;
   userID: string;
+  noresults: boolean = false;
 
   constructor(private data: SearchService, private http: HttpClient, private dialogBox: MatDialog, private reload: ReloadService) { }
 
@@ -104,6 +105,7 @@ export class TasksLayoutComponent implements OnInit {
     });
   } else {
     console.log(this.searchResults.length);
+    console.log(this.searchResults);
     this.H4 = 'Search Results';
     this.isVisible = true;
     this.isVisibleToday = false;
@@ -167,4 +169,20 @@ export class TasksLayoutComponent implements OnInit {
 
     return (date.getFullYear() < now.getFullYear() || date.getMonth() < now.getMonth() || date.getDate() < now.getDate());
   }
+  deleteTask(id) {
+    const args = {
+      _id: id
+    }
+    this.http.put('http://localhost:3000/deleteTask', args, { responseType: 'text'}).subscribe(
+      (response) => {
+        alert(response);
+        this.reload.sendAction(true);
+      },
+      (error) => {
+        alert(error);
+      }
+    );
+    
+  }
+
 }
