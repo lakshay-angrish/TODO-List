@@ -1,7 +1,7 @@
-<span id="username">Hi, {{ firstName }}!</span>
+<span id="username"><strong> Hi, </strong>{{ firstName }}!</span>
 <div class="settings">
   <button mat-icon-button [matMenuTriggerFor]="settingsMenu" aria-label="Example icon-button with a menu">
-    <mat-icon>more_vert</mat-icon>
+    <mat-icon>account_circle</mat-icon>
   </button>
   <mat-menu #settingsMenu="matMenu">
     <button mat-menu-item (click)="openChangePasswordDialog()">
@@ -15,7 +15,7 @@
 <header>
     <form action="" novalidate>
         <mat-form-field matTooltip="enter a task" hideRequiredMarker formnovalidate name="search" tooltip="ds"
-            appearance="standard" color="primary" [style.width.ex]=30>
+            appearance="standard" color="primary">
             <mat-label>
                 Search the task..
             </mat-label>
@@ -23,11 +23,11 @@
         </mat-form-field>
     </form>
     <span>
-        <button mat-button (click) = "searchText(textin.value)" matTooltip="click to search">
+        <button mat-icon-button (click) = "searchText(textin.value)" matTooltip="click to search">
             <mat-icon>search</mat-icon>
         </button>
-        <button matTooltip="Add new task" mat-button (click)="openAddNewTaskDialog()"><mat-icon>add</mat-icon></button>
-        <button matTooltip="Filter tasks" *ngIf='isVisible' [matMenuTriggerFor]="menu" mat-button ><mat-icon>filter_list_all</mat-icon></button>
+        <button matTooltip="Add new task" mat-icon-button (click)="openAddNewTaskDialog()"><mat-icon>add</mat-icon></button>
+        <button matTooltip="Filter tasks" [matMenuTriggerFor]="menu" mat-icon-button (click)="filterTasks()"><mat-icon>filter_list_all</mat-icon></button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item>
                 <mat-checkbox (click)="$event.stopPropagation()" [(ngModel)]="checkbox1" name="checkbox1">
