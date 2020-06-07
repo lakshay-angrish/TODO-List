@@ -172,21 +172,4 @@ export class TasksLayoutComponent implements OnInit {
       case 'high': return '!!!';
     }
   }
-
-<<<<<<< HEAD
-  expired(task) {
-    const date = new Date(task.due);
-    const now = new Date();
-
-    return (date.getFullYear() < now.getFullYear() || date.getMonth() < now.getMonth() || date.getDate() < now.getDate());
-=======
-  showLabel(labels) {
-    if (labels.length > 0 && labels[0]) {
-      console.log(labels);
-      return true;
-    } else {
-      return false;
-    }
->>>>>>> resolved #64
-  }
 }
