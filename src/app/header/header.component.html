@@ -27,7 +27,7 @@
             <mat-icon>search</mat-icon>
         </button>
         <button matTooltip="Add new task" mat-icon-button (click)="openAddNewTaskDialog()"><mat-icon>add</mat-icon></button>
-        <button matTooltip="Filter tasks" [matMenuTriggerFor]="menu" mat-icon-button (click)="filterTasks()"><mat-icon>filter_list_all</mat-icon></button>
+        <button matTooltip="Filter tasks" [matMenuTriggerFor]="menu" mat-icon-button ><mat-icon>filter_list_all</mat-icon></button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item>
                 <mat-checkbox (click)="$event.stopPropagation()" [(ngModel)]="checkbox1" name="checkbox1">
