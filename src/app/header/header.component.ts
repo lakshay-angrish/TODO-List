@@ -29,13 +29,10 @@ export class HeaderComponent implements OnInit {
   labels = new FormControl;
   checkbox1: boolean = false;
   checkbox2: boolean = false;
-  checkbox3: boolean = false;
   selectedPri: any[] = ['low'];
   selectedLab: any[] = ['personal'];
   Labarr: any[];
   Priarr: any[];
-  due1 = new Date();
-  due2 = new Date();
   isVisible: boolean = true;
 
 
@@ -103,24 +100,17 @@ export class HeaderComponent implements OnInit {
     else{
       this.Priarr = ['low','medium','high'];
     }
-    if(this.checkbox3 == true){
-      datestart = this.due1;
-      dateend = this.due2;
-      console.log(this.due1);
-    }
-    this.searchTextfil(query,this.Labarr,this.Priarr,this.due1,this.due2);
+    this.searchTextfil(query,this.Labarr,this.Priarr);
 
   }
 
-  searchTextfil(query: string,selectedLab,selectedPri,due1,due2) {
+  searchTextfil(query: string,selectedLab,selectedPri) {
     
     const args = {
       text: query,
       userID: sessionStorage.getItem('email'),
       Labarr: selectedLab,
-      Priarr: selectedPri,
-      datestart:due1,
-      dateend: due2
+      Priarr: selectedPri
     };
     this.http.post('http://localhost:3000/searchTaskfil', args, { responseType: 'json'}).subscribe(
       (response: any[]) => {

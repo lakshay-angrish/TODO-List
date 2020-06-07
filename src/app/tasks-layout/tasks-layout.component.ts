@@ -93,6 +93,7 @@ export class TasksLayoutComponent implements OnInit {
     });
   } else {
     console.log(this.searchResults.length);
+    console.log(this.searchResults);
     this.H4 = 'Search Results';
     this.isVisible = true;
     this.isVisibleToday = false;

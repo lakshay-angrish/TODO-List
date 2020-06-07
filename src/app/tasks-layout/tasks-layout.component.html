@@ -3,9 +3,9 @@
 </div>
 <div id="content">
   <h1 class="head" *ngIf="isVisibleToday">{{ H1 }}</h1>
-  <div *ngIf="!isVisibleToday" style="display: block;">
+  <!-- <div *ngIf="!isVisibleToday" style="display: block;">
     <img src="../../assets/images/empty_todos.svg" width="60px" alt=""><strong> You've no due tasks today!!! </strong>
-  </div>
+  </div> -->
   <div >
   <div id="task_today" *ngIf="isVisibleToday">
       <div class="card" *ngFor="let task of tasksToday" (click) = "cardClick(task)">
@@ -33,9 +33,9 @@
       </div>
   </div> <br>
   <h1 class="head" *ngIf="isVisibleUpcoming">{{ H2 }}</h1>
-  <div *ngIf="!isVisibleUpcoming" style="display: block;">
+  <!-- <div *ngIf="!isVisibleUpcoming" style="display: block;">
     <img src="../../assets/images/empty_todos.svg" width="60px" alt=""><strong> You've no upcoming tasks!!! </strong>
-  </div>
+  </div> -->
   <div id="task_upcoming" *ngIf="isVisibleUpcoming">
     <div class="card" *ngFor="let task of tasksUpcoming" (click) = "cardClick(task)">
         <div class="container" >

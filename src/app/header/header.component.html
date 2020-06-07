@@ -50,7 +50,7 @@
                       </mat-form-field>
                 </mat-checkbox>
             </button>
-            <button mat-menu-item>
+            <!-- <button mat-menu-item>
                 <mat-checkbox (click)="$event.stopPropagation()" [(ngModel)]="checkbox3" name="checkbox3">
                     <mat-form-field matTooltip="choose a date" style="display: inline-block;width: 90px;">
                         <mat-label>Date</mat-label>
@@ -68,11 +68,10 @@
                         <mat-datepicker #picker2></mat-datepicker>
                     </mat-form-field>
                 </mat-checkbox>
-            </button>
+            </button> -->
             <button mat-menu-item style="pointer-events: none;" (click)="$event.stopPropagation()">
               <button mat-stroked-button color="warn" style="pointer-events: all;" (click)="filterTasks(textin.value);$event.stopPropagation()">Submit</button>
             </button>
         </mat-menu>
     </span>
-
 </header>
